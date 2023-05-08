@@ -86,5 +86,10 @@ public class AutentificarseFXMLController implements Initializable {
         boolean valido = autentificarNick(miembros) && autentificarPass(miembros);
         System.out.println(valido);
     }
+
+    @FXML
+    private void transicion(ActionEvent event) {
+        
+    }
     
 }
