@@ -58,7 +58,7 @@ public class AutentificarseFXMLController implements Initializable {
         String nick;
         String name = nickName.getText();
         for(int i = 0; i < nicks.size(); i++ ){
-            nick = nicks.get(i).getName();
+            nick = nicks.get(i).getNickName();
             if(nick.equals(name)){
                 return true;
             }
@@ -84,6 +84,7 @@ public class AutentificarseFXMLController implements Initializable {
     @FXML
     private void accept(ActionEvent event) {
         boolean valido = autentificarNick(miembros) && autentificarPass(miembros);
+        System.out.println(valido);
     }
     
 }

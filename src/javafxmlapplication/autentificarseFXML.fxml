@@ -50,7 +50,7 @@
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                         <Label text="Contraseña" />
-                        <PasswordField fx:id="contraseña" />
+                        <PasswordField fx:id="contras" />
                      </children>
                   </VBox>
                </children>
