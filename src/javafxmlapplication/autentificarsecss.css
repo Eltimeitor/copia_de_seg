@@ -9,14 +9,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
  .button{
     
     -fx-background-color:#90ee90; 
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
     -fx-border-color:black;
     -fx-text-fill:black;  
+    -fx-background-radius: 15px;
 }
 
 
 .label{
     -fx-text-fill:#228b22; 
     
+}
+
+.text-field{
+  -fx-border-color:black;
+  -fx-border-radius: 6px;
+  
 }

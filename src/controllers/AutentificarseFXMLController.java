@@ -50,9 +50,7 @@ public class AutentificarseFXMLController implements Initializable {
     private Button aceptar;
     @FXML
     private Button cerrar;
-    @FXML
     private Text labelnick;
-    @FXML
     private Text labelcontra;
     /**
      * Initializes the controller class.
