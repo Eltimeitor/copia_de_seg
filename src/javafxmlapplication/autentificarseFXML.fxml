@@ -6,6 +6,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
@@ -13,48 +14,59 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AutentificarseFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@autentificarsecss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AutentificarseFXMLController">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Autentificarse">
-               <font>
-                  <Font name="Berlin Sans FB" size="53.0" />
-               </font>
-               <HBox.margin>
-                  <Insets top="20.0" />
-               </HBox.margin>
-            </Text>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@autentificarsecss.css" />
+            <Pane prefHeight="200.0" prefWidth="200.0" stylesheets="@autentificarsecss.css">
+               <children>
+                  <Label layoutX="-39.0" layoutY="16.0" stylesheets="@autentificarsecss.css" text="Autentificarse">
+                     <font>
+                        <Font name="Berlin Sans FB" size="46.0" />
+                     </font>
+                  </Label>
+               </children></Pane>
          </children>
       </HBox>
    </top>
    <left>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="200.0" prefWidth="100.0" stylesheets="@autentificarsecss.css" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="200.0">
+                  <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@autentificarsecss.css">
                      <children>
-                        <Label text="NickName" />
-                        <TextField fx:id="nickName" onKeyTyped="#cambiosnick" prefHeight="26.0" prefWidth="106.0" />
+                        <Label stylesheets="@autentificarsecss.css" text="NickName">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></Label>
+                        <TextField fx:id="nickName" onKeyTyped="#cambiosnick" prefHeight="26.0" prefWidth="106.0" stylesheets="@autentificarsecss.css" />
                         <Text fx:id="labelnick" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </VBox>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
+            <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="200.0">
+                  <VBox prefHeight="200.0" prefWidth="200.0" stylesheets="@autentificarsecss.css">
                      <children>
-                        <Label text="Contraseña" />
-                        <PasswordField fx:id="contras" onKeyTyped="#cambiospass" />
+                        <Label stylesheets="@autentificarsecss.css" text="Contraseña">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets bottom="5.0" />
+                           </VBox.margin></Label>
+                        <PasswordField fx:id="contras" onKeyTyped="#cambiospass" stylesheets="@autentificarsecss.css" />
                         <Text fx:id="labelcontra" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Hyperlink fx:id="linkreg" onAction="#transicion" text="Registrase">
+                        <Hyperlink fx:id="linkreg" onAction="#transicion" stylesheets="@autentificarsecss.css" text="Registrase">
                            <VBox.margin>
                               <Insets left="120.0" top="30.0" />
                            </VBox.margin>
@@ -67,22 +79,29 @@
       </VBox>
    </center>
    <bottom>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" BorderPane.alignment="CENTER">
          <children>
-            <Pane prefHeight="100.0" prefWidth="212.0">
+            <Pane prefHeight="100.0" prefWidth="212.0" stylesheets="@autentificarsecss.css">
                <children>
-                  <Pane prefHeight="100.0" prefWidth="223.0" />
+                  <Pane prefHeight="100.0" prefWidth="223.0" style="-fx-background-color: #f0fff0;" />
                </children></Pane>
-            <Button fx:id="aceptar" disable="true" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="62.0" text="Aceptar">
+            <Button fx:id="aceptar" disable="true" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="62.0" stylesheets="@autentificarsecss.css" text="Aceptar">
                <HBox.margin>
                   <Insets left="90.0" top="30.0" />
                </HBox.margin></Button>
-            <Pane prefHeight="100.0" prefWidth="57.0" />
-            <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" text="Cerrar">
+            <Pane prefHeight="100.0" prefWidth="57.0" stylesheets="@autentificarsecss.css" />
+            <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" stylesheets="@autentificarsecss.css" text="Cancelar">
                <HBox.margin>
                   <Insets top="30.0" />
                </HBox.margin></Button>
          </children>
       </HBox>
    </bottom>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
