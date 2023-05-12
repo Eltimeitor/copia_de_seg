@@ -4,17 +4,25 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InicioFXMLController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Text fx:id="textouser" strokeType="OUTSIDE" strokeWidth="0.0" />
-            <ImageView fx:id="imagenuser" fitHeight="75.0" fitWidth="65.0" pickOnBounds="true" preserveRatio="true">
+            <Text fx:id="textouser" onMouseClicked="#abrirPerfil" strokeType="OUTSIDE" strokeWidth="0.0" />
+            <ImageView fx:id="imagenuser" fitHeight="75.0" fitWidth="65.0" onMouseClicked="#abrirPerfil" pickOnBounds="true" preserveRatio="true">
                <HBox.margin>
                   <Insets right="30.0" />
                </HBox.margin></ImageView>
          </children></HBox>
    </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </center>
 </BorderPane>

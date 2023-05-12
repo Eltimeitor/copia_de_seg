@@ -43,7 +43,7 @@ import model.ClubDAOException;
  *
  * @author bland
  */
-public class registroFXMLController implements Initializable {
+public class editarFXMLController implements Initializable {
 
     @FXML
     private TextField txt_nombre;
@@ -73,8 +73,10 @@ public class registroFXMLController implements Initializable {
     
     private Club club;
     
-    private String login;
+    private Member user;
     
+    private String login;
+   
     private List<Member> miembros = new ArrayList();
     @FXML
     private TextField txt_tarjeta;
@@ -231,10 +233,10 @@ public class registroFXMLController implements Initializable {
         String telephone = txt_telefono.getText();
         String nickName = txt_nickname.getText();
         String tarjeta = txt_tarjeta.getText();
-        int svc = 0;
-        if((!txt_svc.getText().equals(""))) Integer.parseInt(txt_svc.getText());
+        
         Image avatar = imgAvatar.getImage();
         boolean valido = false;
+        
         
         if (txt_nombre.getText().isEmpty()){
        lblnombre.setText("Campo requerido"); 
@@ -302,15 +304,40 @@ public class registroFXMLController implements Initializable {
         }
         
         
-        
+        if(!valido){
+            miembros = club.getMembers();
+            club.setInitialData();
+            
+            Member aux;
+            Member aux2;
+            for(int i = 0; i < miembros.size() - 6; i++){
+                
+                aux = miembros.get(i);
+                aux2 = miembros.get(i);
+                if(!login.equals(miembros.get(i+5).getNickName())){
+                    club.registerMember(aux.getName(), aux.getSurname(), aux.getTelephone(), aux.getNickName(), aux.getPassword(), aux.getCreditCard(), aux.getSvc(), aux.getImage());
+                }
+                
+                if(!club.existsLogin(txt_nickname.getText())){ 
+                    //club.registerMember(aux2.getName(), aux2.getSurname(), aux2.getTelephone(), aux2.getNickName(), aux2.getPassword(), aux2.getCreditCard(), aux2.getSvc(), aux2.getImage());
+            }
+            }
+            
+            
+        }
         
         if(!club.existsLogin(txt_nickname.getText()) && !valido){
             login = nickName;
+            int svc = 0;
+            if(!txt_svc.getText().equals("")){
+              svc = Integer.parseInt(txt_svc.getText());
+            }
+            
             club.registerMember(name, surname, telephone, nickName, password, tarjeta, svc, avatar);
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
             Parent root = loader.load();
-            InicioFXMLController controller = loader.getController();
+            perfilFXMLController controller = loader.getController();
             controller.init(login,password);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
@@ -320,7 +347,7 @@ public class registroFXMLController implements Initializable {
             myStage.close();
         }
         else{
-            if(club.existsLogin(txt_nickname.getText())){
+            if(club.existsLogin(txt_nickname.getText()) && !txt_nickname.getText().equals(login)){
             existente.setText("NickName ya registrado en el sistema");
             }
         }
@@ -331,7 +358,7 @@ public class registroFXMLController implements Initializable {
         
       Image img = null;
       ImageView seleccionado = imagen.getValue();
-      
+        
     
        if  (avatar1.equals(seleccionado.getImage())){
             imgAvatar.setImage(avatar1);
@@ -405,14 +432,33 @@ public class registroFXMLController implements Initializable {
 
     @FXML
     private void cancell(ActionEvent event) throws IOException {
-        Stage stage = (Stage) cancelar.getScene().getWindow();
-        Stage nuevaVentana = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));
-        nuevaVentana.setScene(new Scene(root));
-        stage.close();
-        nuevaVentana.show();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
+        Parent root = loader.load();
+        perfilFXMLController controller = loader.getController();
+        controller.init(login,user.getPassword());
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        Stage myStage = (Stage) txt_nombre.getScene().getWindow();
+        myStage.close();
     }
-
+    public void init(String log, String pass){
+        this.login = log;
+        txt_nickname.setText(login);
+        user = club.getMemberByCredentials(login, pass);
+        imgAvatar.setImage(user.getImage());
+        txt_nombre.setText(user.getName());
+        txt_apellidos.setText(user.getSurname());
+        txt_telefono.setText(user.getTelephone());
+        txt_tarjeta.setText(user.getCreditCard());
+        if(user.getSvc() == 0){
+            txt_svc.setText("");
+        }
+        else{
+            txt_svc.setText(Integer.toString(user.getSvc()));
+        }
+    }
    
     }
     

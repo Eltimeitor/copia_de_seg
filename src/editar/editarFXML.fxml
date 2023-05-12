@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="627.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.editarFXMLController">
+   <top>
+      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Registro">
+               <font>
+                  <Font name="Berlin Sans FB" size="53.0" />
+               </font>
+               <HBox.margin>
+                  <Insets top="20.0" />
+               </HBox.margin>
+            </Text>
+            <Pane prefHeight="200.0" prefWidth="200.0" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label text="Nombre" />
+                        <TextField fx:id="txt_nombre" prefHeight="26.0" prefWidth="106.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin></TextField>
+                        <Text fx:id="lblnombre" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Apellidos" />
+                        <TextField fx:id="txt_apellidos" prefHeight="26.0" prefWidth="106.0" />
+                        <Text fx:id="lblapellido" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Telefono" />
+                        <TextField fx:id="txt_telefono" prefHeight="26.0" prefWidth="106.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="100.0" prefWidth="202.0">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <children>
+                              <Label text="Opcional">
+                                 <font>
+                                    <Font name="System Italic" size="12.0" />
+                                 </font></Label>
+                              <Label text="Nº Tarjeta de Credito">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                              </Label>
+                              <TextField fx:id="txt_tarjeta" prefHeight="26.0" prefWidth="106.0" />
+                              <Text fx:id="lbltarjeta" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                              <Label text="SVC" />
+                              <TextField fx:id="txt_svc" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" />
+                              <Text fx:id="lblsvc" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children>
+                        </VBox>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <VBox prefHeight="136.0" prefWidth="200.0">
+                     <children>
+                        <Text fx:id="lbltelefono" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="NickName" />
+                        <TextField fx:id="txt_nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
+                        <Text fx:id="lblnickname" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Contraseña" />
+                        <PasswordField fx:id="txt_contrasena" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
+                        <Text fx:id="lblcontrasena" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                  </VBox>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <HBox.margin>
+                        <Insets left="60.0" />
+                     </HBox.margin>
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <HBox prefHeight="100.0" prefWidth="273.0">
+                                 <children>
+                                    <ComboBox fx:id="imagen" onAction="#elegirAvatar" prefHeight="25.0" prefWidth="87.0" promptText="Imagen" />
+                                    <Button mnemonicParsing="false" onAction="#examinarImagen" text="..." />
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
+                                    <ImageView fx:id="imgAvatar" fitHeight="88.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" />
+                                 </children>
+                              </HBox>
+                              <Text fx:id="existente" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                           </children></VBox>
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="registrar" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="65.0" text="Editar">
+               <HBox.margin>
+                  <Insets bottom="30.0" left="90.0" />
+               </HBox.margin></Button>
+            <Pane prefHeight="100.0" prefWidth="57.0" />
+            <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" text="Cancelar">
+               <HBox.margin>
+                  <Insets bottom="30.0" right="80.0" />
+               </HBox.margin></Button>
+         </children>
+      </HBox>
+   </bottom>
+</BorderPane>

@@ -4,8 +4,6 @@
  */
 package controllers;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -13,84 +11,97 @@ import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Member;
 import model.Club;
-import model.ClubDAO;
-import model.ClubDAOException; 
+import model.ClubDAOException;
+import model.Member;
 
 /**
  * FXML Controller class
  *
  * @author david
  */
-public class InicioFXMLController implements Initializable {
+public class perfilFXMLController implements Initializable {
 
-    @FXML
-    private Text textouser;
-    @FXML
-    private ImageView imagenuser;
-    private Image avatar;
     
-    private String login;
-    private String contra;
+    
+    String login;
+    
+    String contra;
+    
     Member user;
     
-    private Club club;
+    Club club;
     
     private List<Member> miembros = new ArrayList();
-
+    @FXML
+    private Button editar;
+    @FXML
+    private Button cerrar;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         try {
             club = club.getInstance();
         } catch (ClubDAOException ex) {
-            Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        //club.setInitialData();//para no añadir nada nuevo a la base de datos, sin esto todo se queda registrado
         
-         
+        club.addSimpleData();
+        
+        miembros = club.getMembers();
     }    
-    
+
     
     public void init(String log, String pass){
         this.login = log;
-        textouser.setText(login);
+        
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
-        imagenuser.setImage(user.getImage());
+        
     }
 
     @FXML
-    private void abrirPerfil(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
+    private void editar(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/editar/editarFXML.fxml"));   
         Parent root = loader.load();
-        perfilFXMLController controller = loader.getController();
+        editarFXMLController controller = loader.getController();
         controller.init(login,contra);
         Scene scene = new Scene(root);
         Stage stage = new Stage();
         stage.setScene(scene);
         stage.show();
-        Stage myStage = (Stage) textouser.getScene().getWindow();
+        Stage myStage = (Stage) editar.getScene().getWindow();
         myStage.close();
     }
-    
+
+    @FXML
+    private void cerrar(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
+        Parent root = loader.load();
+        InicioFXMLController controller = loader.getController();
+        controller.init(login,contra);
+        Scene scene = new Scene(root);
+        Stage stage = new Stage();
+        stage.setScene(scene);
+        stage.show();
+        Stage myStage = (Stage) cerrar.getScene().getWindow();
+        myStage.close();
+    }
     
 }
