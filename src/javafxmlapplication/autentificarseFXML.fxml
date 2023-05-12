@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AutentificarseFXMLController">
    <top>
@@ -38,38 +39,6 @@
          </children>
       </HBox>
    </top>
-   <bottom>
-      <HBox alignment="BASELINE_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="87.0" prefWidth="600.0" style="-fx-background-color: #f0fff0;" stylesheets="@autentificarsecss.css" BorderPane.alignment="BOTTOM_CENTER">
-         <children>
-            <ImageView fitHeight="116.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../resources/kisspng-tennis-balls-bouncy-balls-racket-5d46778dde5ce3.4825685415648992139108-removebg-preview.png" />
-               </image>
-               <HBox.margin>
-                  <Insets />
-               </HBox.margin>
-               <viewport>
-                  <Rectangle2D />
-               </viewport>
-            </ImageView>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="375.0">
-               <children>
-                  <Button fx:id="aceptar" disable="true" mnemonicParsing="false" onAction="#accept" prefHeight="28.0" prefWidth="60.0" stylesheets="@autentificarsecss.css" text="Aceptar">
-                     <HBox.margin>
-                        <Insets bottom="20.0" left="90.0" top="30.0" />
-                     </HBox.margin>
-                  </Button>
-                  <Pane prefHeight="104.0" prefWidth="73.0" />
-                  <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" stylesheets="@autentificarsecss.css" text="Cancelar">
-                     <HBox.margin>
-                        <Insets bottom="20.0" top="30.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-            </HBox>
-         </children>
-      </HBox>
-   </bottom>
    <left>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
    </left>
@@ -92,6 +61,7 @@
                            </padding>
                         </Label>
                         <TextField fx:id="nickName" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#cambiosnick" prefHeight="28.0" prefWidth="149.0" stylesheets="@autentificarsecss.css" />
+                        <Text fx:id="labelnick" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </VBox>
                </children>
@@ -109,7 +79,16 @@
                            </padding>
                         </Label>
                         <PasswordField fx:id="contras" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#cambiospass" prefHeight="28.0" prefWidth="149.0" stylesheets="@autentificarsecss.css" />
+                        <Text fx:id="labelcontra" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Hyperlink fx:id="linkreg" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#transicion" stylesheets="@autentificarsecss.css" text="Registrase" />
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Button fx:id="aceptar" disable="true" mnemonicParsing="false" onAction="#accept" prefHeight="28.0" prefWidth="60.0" stylesheets="@autentificarsecss.css" text="Aceptar" />
+                              <Pane prefHeight="28.0" prefWidth="57.0" />
+                              <Button fx:id="cerrar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" stylesheets="@autentificarsecss.css" text="Cancelar" />
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
@@ -117,4 +96,14 @@
          </children>
       </VBox>
    </center>
+   <bottom>
+      <ImageView fitHeight="116.0" fitWidth="112.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="BOTTOM_LEFT">
+         <image>
+            <Image url="@../resources/kisspng-tennis-balls-bouncy-balls-racket-5d46778dde5ce3.4825685415648992139108-removebg-preview.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+   </bottom>
 </BorderPane>
