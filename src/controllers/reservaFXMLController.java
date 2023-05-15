@@ -6,6 +6,9 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -13,10 +16,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import model.Club;
 import model.ClubDAOException;
+import model.Court;
 import model.Member;
 
 /**
@@ -68,6 +73,12 @@ public class reservaFXMLController implements Initializable {
     private String contra;
     private Member user;
 
+    private Court court;
+    private LocalDateTime bookingDate;
+    private LocalDate madeForDay;
+    private LocalTime fromTime;
+    @FXML
+    private DatePicker picker;
     /**
      * Initializes the controller class.
      */
@@ -89,7 +100,10 @@ public class reservaFXMLController implements Initializable {
     }    
 
     @FXML
-    private void reservar(ActionEvent event) {
+    private void reservar(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista1");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
         
     }
     
@@ -100,23 +114,44 @@ public class reservaFXMLController implements Initializable {
     }
 
     @FXML
-    private void reservar2(ActionEvent event) {
+    private void reservar2(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista2");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
     }
 
     @FXML
-    private void reservar3(ActionEvent event) {
+    private void reservar3(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista3");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+    }
+    
+
+    @FXML
+    private void reservar4(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista4");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
     }
 
     @FXML
-    private void reservar4(ActionEvent event) {
+    private void reservar5(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista5");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
     }
 
     @FXML
-    private void reservar5(ActionEvent event) {
+    private void reservar6(ActionEvent event) throws ClubDAOException {
+        boolean paid = user.checkHasCreditInfo();
+        court.setName("pista6");
+        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
     }
 
     @FXML
-    private void reservar6(ActionEvent event) {
+    private void pick(ActionEvent event) {
+        
     }
     
 }
