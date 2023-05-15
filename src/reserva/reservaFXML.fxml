@@ -37,27 +37,27 @@
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservar2" mnemonicParsing="false" onAction="#reservar" text="Reservar">
+                  <Button fx:id="reservar2" mnemonicParsing="false" onAction="#reservar2" text="Reservar">
                      <HBox.margin>
                         <Insets left="28.0" right="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservar3" mnemonicParsing="false" onAction="#reservar" text="Reservar">
+                  <Button fx:id="reservar3" mnemonicParsing="false" onAction="#reservar3" text="Reservar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservar4" mnemonicParsing="false" onAction="#reservar" text="Reservar">
+                  <Button fx:id="reservar4" mnemonicParsing="false" onAction="#reservar4" text="Reservar">
                      <HBox.margin>
                         <Insets left="30.0" right="30.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservar5" mnemonicParsing="false" onAction="#reservar" text="Reservar">
+                  <Button fx:id="reservar5" mnemonicParsing="false" onAction="#reservar5" text="Reservar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="reservar6" mnemonicParsing="false" onAction="#reservar" text="Reservar">
+                  <Button fx:id="reservar6" mnemonicParsing="false" onAction="#reservar6" text="Reservar">
                      <HBox.margin>
                         <Insets left="30.0" />
                      </HBox.margin>
