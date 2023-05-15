@@ -69,7 +69,7 @@ public class menuFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(menuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+        club.addSimpleData();
          
     }    
     
@@ -110,8 +110,17 @@ public class menuFXMLController implements Initializable {
     }
 
     @FXML
-    private void reservar(ActionEvent event) {
-        
+    private void reservar(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reserva/reservaFXML.fxml"));   
+            Parent root = loader.load();
+            reservaFXMLController controller = loader.getController();
+            controller.init(login,contra);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reserva.getScene().getWindow();
+            myStage.close();
     }
     
     

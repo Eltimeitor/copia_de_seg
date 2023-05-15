@@ -154,44 +154,44 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="pista1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgpista1" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/pista.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pista11" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/pista.png" />
-                     </image>
+                  <ImageView fx:id="imgpista2" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="pista12" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/pista.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pista13" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgpista3" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/pista.png" />
                      </image>
+                  </ImageView>
+                  <ImageView fx:id="imgpista4" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
-                  </ImageView>
-                  <ImageView fx:id="pista14" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/pista.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="pista15" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imgpista5" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../resources/pista.png" />
                      </image>
+                  </ImageView>
+                  <ImageView fx:id="imgpista6" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
+                     <image>
+                        <Image url="@../resources/pista.png" />
+                     </image>
                   </ImageView>
                </children>
                <VBox.margin>
