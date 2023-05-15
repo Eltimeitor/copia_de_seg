@@ -407,7 +407,7 @@ public class registroFXMLController implements Initializable {
     private void cancell(ActionEvent event) throws IOException {
         Stage stage = (Stage) cancelar.getScene().getWindow();
         Stage nuevaVentana = new Stage();
-        Parent root = FXMLLoader.load(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/inicio/inicioFXML.fxml"));
         nuevaVentana.setScene(new Scene(root));
         stage.close();
         nuevaVentana.show();

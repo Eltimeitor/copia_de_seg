@@ -15,11 +15,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,6 +53,8 @@ public class menuFXMLController implements Initializable {
     private Club club;
     
     private List<Member> miembros = new ArrayList();
+    @FXML
+    private Button reserva;
 
     /**
      * Initializes the controller class.
@@ -80,16 +84,34 @@ public class menuFXMLController implements Initializable {
 
     @FXML
     private void abrirPerfil(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
-        Parent root = loader.load();
-        perfilFXMLController controller = loader.getController();
-        controller.init(login,contra);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        Stage myStage = (Stage) textouser.getScene().getWindow();
-        myStage.close();
+        if(login.equals("Iniciar Sesion") && contra.equals("noLog")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) textouser.getScene().getWindow();
+            myStage.close();
+        }
+        else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
+            Parent root = loader.load();
+            perfilFXMLController controller = loader.getController();
+            controller.init(login,contra);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) textouser.getScene().getWindow();
+            myStage.close();
+        }
+    }
+
+    @FXML
+    private void reservar(ActionEvent event) {
+        
     }
     
     

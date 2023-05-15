@@ -120,10 +120,6 @@ public class AutentificarseFXMLController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            
-           
-            
-            
             Stage myStage = (Stage) aceptar.getScene().getWindow();
             myStage.close();
             
@@ -159,9 +155,16 @@ public class AutentificarseFXMLController implements Initializable {
     }
 
     @FXML
-    private void cancell(ActionEvent event) {
-        Stage stage = (Stage) cerrar.getScene().getWindow();
-        stage.close();
+    private void cancell(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/Inicio/InicioFXML.fxml"));   
+            Parent root = loader.load();
+            InicioFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) aceptar.getScene().getWindow();
+            myStage.close();
     }
 
     @FXML
