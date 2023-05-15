@@ -4,32 +4,25 @@
  */
 package controllers;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.image.Image;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import model.Member;
 import model.Club;
-import model.ClubDAO;
-import model.ClubDAOException; 
+import model.ClubDAOException;
+import model.Member;
 
 /**
  * FXML Controller class
@@ -39,58 +32,76 @@ import model.ClubDAOException;
 public class InicioFXMLController implements Initializable {
 
     @FXML
-    private Text textouser;
+    private Button iniciosesion;
     @FXML
-    private ImageView imagenuser;
-    private Image avatar;
-    
-    private String login;
-    private String contra;
-    Member user;
+    private Button registro;
+    @FXML
+    private Button sinSesion;
     
     private Club club;
     
-    private List<Member> miembros = new ArrayList();
-
+    private Member noUser;
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
         try {
             club = club.getInstance();
         } catch (ClubDAOException ex) {
-            Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
+            Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        club.setInitialData();//para no añadir nada nuevo a la base de datos, sin esto todo se queda registrado
+        
+        club.addSimpleData();
+        
+        try {
+        noUser = club.registerMember("noLog", "noLog", "", "Iniciar Sesion", "noLog", "", 0, null);
+        } catch (ClubDAOException ex) {
             Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         
     }    
-    
-    
-    public void init(String log, String pass){
-        this.login = log;
-        textouser.setText(login);
-        this.contra = pass;
-        user = club.getMemberByCredentials(login, contra);
-        imagenuser.setImage(user.getImage());
+
+    @FXML
+    private void iniciosesion(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) iniciosesion.getScene().getWindow();
+            myStage.close();
     }
 
     @FXML
-    private void abrirPerfil(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
-        Parent root = loader.load();
-        perfilFXMLController controller = loader.getController();
-        controller.init(login,contra);
-        Scene scene = new Scene(root);
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.show();
-        Stage myStage = (Stage) textouser.getScene().getWindow();
-        myStage.close();
+    private void registrarse(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/registro/registroFXML.fxml"));   
+            Parent root = loader.load();
+            registroFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) registro.getScene().getWindow();
+            myStage.close();
     }
-    
+
+    @FXML
+    private void sinSesion(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
+            Parent root = loader.load();
+            menuFXMLController controller = loader.getController();
+            controller.init(noUser.getNickName(),noUser.getPassword());
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) sinSesion.getScene().getWindow();
+            myStage.close();
+    }
     
 }

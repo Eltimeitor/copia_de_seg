@@ -54,6 +54,7 @@ public class AutentificarseFXMLController implements Initializable {
     private Text labelnick;
     @FXML
     private Text labelcontra;
+    
     /**
      * Initializes the controller class.
      */
@@ -67,7 +68,7 @@ public class AutentificarseFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        club.setInitialData();//para no añadir nada nuevo a la base de datos, sin esto todo se queda registrado
+        
         
         club.addSimpleData();
         
@@ -111,9 +112,9 @@ public class AutentificarseFXMLController implements Initializable {
         boolean validonick = autentificarNick(miembros);
         boolean validopass = autentificarPass(miembros);
         if(validonick && validopass){
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
             Parent root = loader.load();
-            InicioFXMLController controller = loader.getController();
+            menuFXMLController controller = loader.getController();
             controller.init(nickName.getText(),contras.getText());
             Scene scene = new Scene(root);
             Stage stage = new Stage();

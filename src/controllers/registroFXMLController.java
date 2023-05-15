@@ -310,7 +310,7 @@ public class registroFXMLController implements Initializable {
             
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
             Parent root = loader.load();
-            InicioFXMLController controller = loader.getController();
+            menuFXMLController controller = loader.getController();
             controller.init(login,password);
             Scene scene = new Scene(root);
             Stage stage = new Stage();
