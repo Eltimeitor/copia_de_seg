@@ -18,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Club;
@@ -41,6 +43,8 @@ public class InicioFXMLController implements Initializable {
     private Club club;
     
     private Member noUser;
+    @FXML
+    private HBox arriba;
     /**
      * Initializes the controller class.
      */

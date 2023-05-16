@@ -1,0 +1,14 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 16 may 2023, 15:12:30
+    Author     : bland
+*/
+.arriba{
+    -fx-background-color: #f0fff0;
+    -fx-background-image:url("./fondo.png");
+    
+}
+
