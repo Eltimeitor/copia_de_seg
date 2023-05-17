@@ -15,6 +15,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-text-fill:black;  
     -fx-background-radius: 15px;
 }
+#inspeccionar{
+    -fx-background-color:#8fbc8f;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-border-color:black;
+    -fx-text-fill:black;  
+    -fx-background-radius: 2px;
+    
+}
 
 
 .label{
@@ -26,4 +35,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
   -fx-border-color:black;
   -fx-border-radius: 6px;
   
+}
+
+.combo-box{
+    -fx-background-color:#8fbc8f;
+    -fx-border-width: 1px;
+    -fx-border-radius: 2px;
+    -fx-border-color:black;
+    -fx-text-fill:black;  
+    -fx-background-radius: 2px;
 }
