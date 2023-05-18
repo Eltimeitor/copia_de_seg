@@ -54,7 +54,7 @@ public class perfilFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -62,7 +62,7 @@ public class perfilFXMLController implements Initializable {
         }
         //club.setInitialData();//para no añadir nada nuevo a la base de datos, sin esto todo se queda registrado
         
-        club.addSimpleData();
+        
         
         miembros = club.getMembers();
     }    

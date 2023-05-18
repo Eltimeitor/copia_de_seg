@@ -21,6 +21,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import model.Booking;
 import model.Club;
 import model.ClubDAOException;
 import model.Court;
@@ -103,7 +104,7 @@ public class reservaFXMLController implements Initializable {
         
         
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -111,7 +112,7 @@ public class reservaFXMLController implements Initializable {
         }
         
         
-        club.addSimpleData();
+      
         
     }    
 
@@ -123,17 +124,19 @@ public class reservaFXMLController implements Initializable {
         diaPedido = dia.getDayOfMonth();
         mesPedido = dia.getMonthValue();
         yearPedido = dia.getYear();
-        System.out.println(diaPedido);
-        System.out.println(mesPedido);
-        System.out.println(yearPedido);
+         madeForDay = LocalDate.of(yearPedido,mesPedido,diaPedido);
+        fromTime = LocalTime.of(0,0);
+        bookingDate = LocalDateTime.of(madeForDay,fromTime);
     }
     
     @FXML
     private void reservar(ActionEvent event) throws ClubDAOException {
         boolean paid = user.checkHasCreditInfo();
         court = new Court("pista1");
-        //club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
         getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        
         
     }
     

@@ -129,7 +129,7 @@ public class registroFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(registroFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -308,7 +308,7 @@ public class registroFXMLController implements Initializable {
             login = nickName;
             club.registerMember(name, surname, telephone, nickName, password, tarjeta, svc, avatar);
             
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
             Parent root = loader.load();
             menuFXMLController controller = loader.getController();
             controller.init(login,password);
@@ -372,7 +372,7 @@ public class registroFXMLController implements Initializable {
     @FXML
     private void examinarImagen(ActionEvent event) {
         
-         FileChooser fileChooser = new FileChooser();
+        FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Buscar Imagen");
 
         // Agregar filtros para facilitar la busqueda

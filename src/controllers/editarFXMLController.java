@@ -131,7 +131,7 @@ public class editarFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(registroFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {

@@ -69,7 +69,7 @@ public class menuFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(menuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        club.addSimpleData();
+        
          
     }    
     

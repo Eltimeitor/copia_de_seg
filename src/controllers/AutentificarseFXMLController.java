@@ -62,7 +62,7 @@ public class AutentificarseFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
@@ -70,7 +70,7 @@ public class AutentificarseFXMLController implements Initializable {
         }
         
         
-        club.addSimpleData();
+        
         
         miembros = club.getMembers();
         
