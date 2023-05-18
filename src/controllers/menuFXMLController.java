@@ -63,7 +63,7 @@ public class menuFXMLController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            club = club.getInstance();
+            club = Club.getInstance();
         } catch (ClubDAOException ex) {
             Logger.getLogger(menuFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
