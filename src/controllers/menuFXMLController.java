@@ -55,6 +55,8 @@ public class menuFXMLController implements Initializable {
     private List<Member> miembros = new ArrayList();
     @FXML
     private Button reserva;
+    @FXML
+    private Button verperfil;
 
     /**
      * Initializes the controller class.
@@ -83,7 +85,7 @@ public class menuFXMLController implements Initializable {
     }
 
     @FXML
-    private void abrirPerfil(MouseEvent event) throws IOException {
+    private void abrirPerfil(ActionEvent event) throws IOException {
         if(login.equals("Iniciar Sesion") && contra.equals("noLog")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
             Parent root = loader.load();
@@ -92,7 +94,7 @@ public class menuFXMLController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            Stage myStage = (Stage) textouser.getScene().getWindow();
+            Stage myStage = (Stage) verperfil.getScene().getWindow();
             myStage.close();
         }
         else{
@@ -104,7 +106,7 @@ public class menuFXMLController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            Stage myStage = (Stage) textouser.getScene().getWindow();
+            Stage myStage = (Stage) verperfil.getScene().getWindow();
             myStage.close();
         }
     }
@@ -122,6 +124,8 @@ public class menuFXMLController implements Initializable {
             Stage myStage = (Stage) reserva.getScene().getWindow();
             myStage.close();
     }
+
+    
     
     
 }

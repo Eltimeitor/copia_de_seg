@@ -80,7 +80,7 @@
                         </Label>
                         <PasswordField fx:id="contras" maxHeight="-Infinity" maxWidth="-Infinity" onKeyTyped="#cambiospass" prefHeight="28.0" prefWidth="149.0" stylesheets="@autentificarsecss.css" />
                         <Text fx:id="labelcontra" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Hyperlink fx:id="linkreg" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#transicion" stylesheets="@autentificarsecss.css" text="Registrase" />
+                        <Hyperlink fx:id="linkreg" alignment="CENTER_RIGHT" contentDisplay="CENTER" onAction="#transicion" stylesheets="@autentificarsecss.css" text="Registrarse" />
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" />
                         <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0">
                            <children>

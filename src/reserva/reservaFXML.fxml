@@ -30,6 +30,7 @@
                      </HBox.margin>
                   </Text>
                   <DatePicker fx:id="picker" onAction="#pick" />
+                  <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Go Back" textAlignment="RIGHT" translateX="260.0" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="59.0" prefWidth="600.0">

@@ -19,7 +19,7 @@
       <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <Pane prefHeight="200.0" prefWidth="200.0" />
-            <Label alignment="CENTER" text="Editar perfil">
+            <Label alignment="CENTER" prefHeight="68.0" prefWidth="242.0" text="Editar perfil">
                <font>
                   <Font name="Berlin Sans FB" size="46.0" />
                </font>

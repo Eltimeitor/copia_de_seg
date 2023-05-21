@@ -16,11 +16,15 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import model.Booking;
 import model.Club;
 import model.ClubDAOException;
@@ -96,6 +100,8 @@ public class reservaFXMLController implements Initializable {
     private int mesPedido;
     
     private int yearPedido;
+    @FXML
+    private Button GoBack;
     /**
      * Initializes the controller class.
      */
@@ -130,13 +136,24 @@ public class reservaFXMLController implements Initializable {
     }
     
     @FXML
-    private void reservar(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
+    private void reservar(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
+    }
+        else{boolean paid = user.checkHasCreditInfo();
         court = new Court("pista1");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
-        
+        }
         
     }
     
@@ -146,40 +163,121 @@ public class reservaFXMLController implements Initializable {
         user = club.getMemberByCredentials(login, contra);
     }
 
-    private void reservar2(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista2");
-        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+    private void reservar2(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
     }
-
-    private void reservar3(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
+        else{boolean paid = user.checkHasCreditInfo();
+        court = new Court("pista2");
+        getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        }
+    }
+    private void reservar3(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
+    }
+        else{boolean paid = user.checkHasCreditInfo();
         court = new Court("pista3");
-        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        }
     }
     
 
-    private void reservar4(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
+    private void reservar4(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
+    }
+        else{boolean paid = user.checkHasCreditInfo();
         court = new Court("pista4");
-        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        }
     }
 
-    private void reservar5(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
+    private void reservar5(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
+    }
+        else{boolean paid = user.checkHasCreditInfo();
         court = new Court("pista5");
-        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        }
     }
 
-    private void reservar6(ActionEvent event) throws ClubDAOException {
-        boolean paid = user.checkHasCreditInfo();
+    private void reservar6(ActionEvent event) throws ClubDAOException, IOException{
+        if(this.login.equals("Iniciar Sesion")){ 
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
+            Parent root = loader.load();
+            AutentificarseFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            myStage.close();
+    }
+        else{boolean paid = user.checkHasCreditInfo();
         court = new Court("pista6");
-        club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        getCurrentDate();
+       
+        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        }
     }
 
     @FXML
     private void pick(ActionEvent event) {
         
     }
-    
+    @FXML
+    private void goback(ActionEvent event) throws IOException {
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml")); 
+    Parent root = loader.load();
+            menuFXMLController controller = loader.getController();
+            controller.init(login, contra);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) GoBack.getScene().getWindow();
+            myStage.close();
+}
 }

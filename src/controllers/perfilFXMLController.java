@@ -48,6 +48,20 @@ public class perfilFXMLController implements Initializable {
     private Button editar;
     @FXML
     private Button cerrar;
+    @FXML
+    private ImageView imagenuser;
+    @FXML
+    private Text userName;
+    @FXML
+    private Text userSurnames;
+    @FXML
+    private Text userNumber;
+    @FXML
+    private Text UserNickname;
+    @FXML
+    private Text userCard;
+    @FXML
+    private Text userSVC;
     /**
      * Initializes the controller class.
      */
@@ -73,7 +87,18 @@ public class perfilFXMLController implements Initializable {
         
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
-        
+        imagenuser.setImage(user.getImage());
+        userName.setText(user.getName());
+        userSurnames.setText(user.getSurname());
+        userNumber.setText(user.getTelephone());
+        userCard.setText(user.getCreditCard());
+        UserNickname.setText(login);
+        if(user.getSvc() == 0){
+            userSVC.setText("");
+        }
+        else{
+            userSVC.setText(Integer.toString(user.getSvc()));
+        }
     }
 
     @FXML
@@ -92,7 +117,7 @@ public class perfilFXMLController implements Initializable {
 
     @FXML
     private void cerrar(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml"));   
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
         Parent root = loader.load();
         menuFXMLController controller = loader.getController();
         controller.init(login,contra);
