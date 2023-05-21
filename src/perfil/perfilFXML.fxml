@@ -2,79 +2,46 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.perfilFXMLController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #f0fff0;" stylesheets="@../editar/editarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.perfilFXMLController">
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="83.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fx:id="imagenuser" fitHeight="125.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="imagenuser" fitHeight="104.0" fitWidth="97.0" pickOnBounds="true" preserveRatio="true" />
          </children></HBox>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="13.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre" />
-                  <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
-               </children></HBox>
-            <HBox prefHeight="25.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellidos" />
-                  <Text fx:id="userSurnames" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="23.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Teléfono" />
-                  <Text fx:id="userNumber" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="20.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NickName" />
-                  <Text fx:id="UserNickname" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="19.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Tarjeta" />
-                  <Text fx:id="userCard" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <HBox prefHeight="27.0" prefWidth="600.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="SVC" />
-                  <Text fx:id="userSVC" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="15.0" />
-                     </HBox.margin>
-                  </Text>
+                  <VBox prefHeight="200.0" prefWidth="368.0">
+                     <children>
+                        <Label text="Nombre">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                        <Text fx:id="userName" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Apellidos" />
+                        <Text fx:id="userSurnames" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Teléfono" />
+                        <Text fx:id="userNumber" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="NickName" />
+                        <Text fx:id="UserNickname" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Tarjeta" />
+                        <Text fx:id="userCard" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="SVC" />
+                        <Text fx:id="userSVC" strokeType="OUTSIDE" strokeWidth="0.0" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
          </children>
@@ -96,4 +63,10 @@
          </children>
       </HBox>
    </bottom>
+   <left>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </left>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" />
+   </right>
 </BorderPane>
