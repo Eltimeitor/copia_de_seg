@@ -319,15 +319,26 @@ public class reservaFXMLController implements Initializable {
         
         
         else if(texto.length() == 4){
-           
+           texto = hora.getText();
            texto = texto.charAt(1) + texto.charAt(0) + ":00";
            
            hora.setText(texto);
         }
         else if(texto.length()> 5){
-           errorHora.setText("Error en la hora");
+           texto = hora.getText();
+           errorHora.setText("Error de formato");
            hora.setText("");
            }
+        int horav = 0;
+        if(!(texto.length() == 4)){
+            texto = hora.getText();
+            char num1 = texto.charAt(0);
+            char num2 = texto.charAt(1);
+            horav = Character.getNumericValue(num1)*10 + Character.getNumericValue(num2);
+        }
+        if(horav > 24){
+            errorHora.setText("Error, hora invalida");
+        }
     }
 
 }
