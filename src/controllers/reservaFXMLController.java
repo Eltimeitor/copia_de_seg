@@ -22,7 +22,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Booking;
@@ -38,8 +40,6 @@ import model.Member;
  */
 public class reservaFXMLController implements Initializable {
 
-    @FXML
-    private Text numPistas;
     @FXML
     private Button reservar1;
     @FXML
@@ -102,6 +102,10 @@ public class reservaFXMLController implements Initializable {
     private int yearPedido;
     @FXML
     private Button GoBack;
+    @FXML
+    private Text errorHora;
+    @FXML
+    private TextField hora;
     /**
      * Initializes the controller class.
      */
@@ -121,7 +125,17 @@ public class reservaFXMLController implements Initializable {
       
         
     }    
-
+    
+    public void getHour(){
+        
+        hora.getText();
+        
+        
+        
+        
+        fromTime = LocalTime.of(11,0);
+    }
+    
     public void getCurrentDate(){
         WeekFields weekFields = WeekFields.of(Locale.getDefault()); 
         currentWeek = (LocalDate.now().get(weekFields.weekOfWeekBasedYear()))/ 4;  
@@ -130,8 +144,7 @@ public class reservaFXMLController implements Initializable {
         diaPedido = dia.getDayOfMonth();
         mesPedido = dia.getMonthValue();
         yearPedido = dia.getYear();
-         madeForDay = LocalDate.of(yearPedido,mesPedido,diaPedido);
-        fromTime = LocalTime.of(0,0);
+        madeForDay = LocalDate.of(yearPedido,mesPedido,diaPedido);
         bookingDate = LocalDateTime.of(madeForDay,fromTime);
     }
     
@@ -148,11 +161,22 @@ public class reservaFXMLController implements Initializable {
             Stage myStage = (Stage) reservar1.getScene().getWindow();
             myStage.close();
     }
-        else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista1");
-        getCurrentDate();
-       
-        Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+        else{
+            var reservas = club.getBookings();
+            boolean noapta = false;
+            for(int i = 0; i < reservas.size(); i++){
+                noapta = reservas.get(i).getBookingDate().equals(bookingDate);
+                if(!noapta){
+                    break;
+                }
+            }
+            if(!noapta){
+            boolean paid = user.checkHasCreditInfo();
+            court = club.getCourt("pista 1");
+            getCurrentDate();
+            getHour();
+            Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
+            }
         }
         
     }
@@ -176,7 +200,7 @@ public class reservaFXMLController implements Initializable {
             myStage.close();
     }
         else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista2");
+        court = new Court("pista 2");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
@@ -195,7 +219,7 @@ public class reservaFXMLController implements Initializable {
             myStage.close();
     }
         else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista3");
+        court = new Court("pista 3");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
@@ -216,7 +240,7 @@ public class reservaFXMLController implements Initializable {
             myStage.close();
     }
         else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista4");
+        court = new Court("pista 4");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
@@ -236,7 +260,7 @@ public class reservaFXMLController implements Initializable {
             myStage.close();
     }
         else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista5");
+        court = new Court("pista 5");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
@@ -256,7 +280,7 @@ public class reservaFXMLController implements Initializable {
             myStage.close();
     }
         else{boolean paid = user.checkHasCreditInfo();
-        court = new Court("pista6");
+        court = new Court("pista 6");
         getCurrentDate();
        
         Booking registerBooking = club.registerBooking(bookingDate, madeForDay, fromTime, paid, court, user);
@@ -280,4 +304,30 @@ public class reservaFXMLController implements Initializable {
             Stage myStage = (Stage) GoBack.getScene().getWindow();
             myStage.close();
 }
+
+    @FXML
+    private void dosPuntos(KeyEvent event) {
+       
+        String texto = hora.getText();
+        
+        
+        if(!texto.contains(":00")){
+        texto = texto + ":00";
+        hora.setText(texto);
+        errorHora.setText("");
+        }
+        
+        
+        else if(texto.length() == 4){
+           
+           texto = texto.charAt(1) + texto.charAt(0) + ":00";
+           
+           hora.setText(texto);
+        }
+        else if(texto.length()> 5){
+           errorHora.setText("Error en la hora");
+           hora.setText("");
+           }
+    }
+
 }
