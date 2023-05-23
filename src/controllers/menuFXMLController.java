@@ -85,11 +85,10 @@ public class menuFXMLController implements Initializable {
     }
 
     @FXML
-    private void abrirPerfil(ActionEvent event) throws IOException {
+    private void abrirPerfil(MouseEvent event) throws IOException {
         if(login.equals("Iniciar Sesion") && contra.equals("noLog")){
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
             Parent root = loader.load();
-            AutentificarseFXMLController controller = loader.getController();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
@@ -124,6 +123,10 @@ public class menuFXMLController implements Initializable {
             Stage myStage = (Stage) reserva.getScene().getWindow();
             myStage.close();
     }
+
+    
+
+    
 
     
     
