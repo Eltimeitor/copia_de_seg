@@ -74,6 +74,10 @@ public class AutentificarseFXMLController implements Initializable {
         
         miembros = club.getMembers();
         
+        nickName.setText("user1");
+        contras.setText("123456x");
+        aceptar.setDisable(false);
+        
         
         
     }    
