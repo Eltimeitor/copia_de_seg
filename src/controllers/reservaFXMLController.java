@@ -11,6 +11,8 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -26,6 +28,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
@@ -45,29 +48,7 @@ import model.Member;
 public class reservaFXMLController implements Initializable {
 
     @FXML
-    private Button reservar1;
-    @FXML
-    private Button reservar2;
-    @FXML
-    private Button reservar3;
-    @FXML
-    private Button reservar4;
-    @FXML
-    private Button reservar5;
-    @FXML
-    private Button reservar6;
-    @FXML
-    private Text pista1;
-    @FXML
-    private Text pista2;
-    @FXML
-    private Text pista3;
-    @FXML
-    private Text pista4;
-    @FXML
-    private Text pista5;
-    @FXML
-    private Text pista6;
+    private Button reservar;
     
     private Club club;
     private String login;
@@ -80,18 +61,6 @@ public class reservaFXMLController implements Initializable {
     private LocalTime fromTime;
     @FXML
     private DatePicker picker;
-    @FXML
-    private ImageView imgpista1;
-    @FXML
-    private ImageView imgpista2;
-    @FXML
-    private ImageView imgpista3;
-    @FXML
-    private ImageView imgpista5;
-    @FXML
-    private ImageView imgpista6;
-    @FXML
-    private ImageView imgpista4;
     
     private int currentWeek;
     
@@ -110,6 +79,20 @@ public class reservaFXMLController implements Initializable {
     private Text errorHora;
     @FXML
     private ChoiceBox<String> hora;
+    @FXML
+    private ListView<String> lvPista1;
+    @FXML
+    private ListView<String> lvPista2;
+    @FXML
+    private ListView<String> lvPista3;
+    @FXML
+    private ListView<String> lvPista4;
+    @FXML
+    private ChoiceBox<String> pista;
+    @FXML
+    private ListView<String> lvPista5;
+    @FXML
+    private ListView<String> lvPista6;
     /**
      * Initializes the controller class.
      */
@@ -127,12 +110,82 @@ public class reservaFXMLController implements Initializable {
         
         picker.setValue(LocalDate.now());
         inicializarHoras();
+        inicializarPistas();
         hora.setValue((LocalTime.now().getHour() + 1)+":00");
-        
+        inicializarListView();
         
       
         
-    }    
+    }
+    
+    private void inicializarHoras(){
+        ObservableList<String> horas = FXCollections.observableArrayList();
+        
+        for(int i = 0; i <= 23;i++){
+            horas.add((i<10?"0":"")+i+":00");
+        }
+        
+        hora.setItems(horas);
+        //Problema, si son las 23h pasa a poner 24, valor que pertenece al siguiente día
+        hora.setValue((LocalTime.now().getHour() + 1)+":00");
+    }
+    
+    private void inicializarPistas(){
+        ObservableList<String> pistas = FXCollections.observableArrayList();
+        
+        for(int i = 1; i <=6;i++){
+            pistas.add("Pista "+i);
+        }
+        
+        pista.setItems(pistas);
+        pista.setValue("Pista 1");
+    }
+    
+    @FXML
+    private void inicializarListView(){
+        
+        List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
+        ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista3 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
+        ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
+        
+        for(int i = 0; i < reservaPista.size();i++){
+            switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
+                case "PISTA1":
+                    reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                case "PISTA2":
+                    reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                case "PISTA3":
+                    reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                case "PISTA4":
+                    reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                case "PISTA5":
+                    reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                case "PISTA6":
+                    reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    break;
+                default:
+                    System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
+                       
+            }
+        }
+        lvPista1.setItems(reservasPista1);
+        lvPista2.setItems(reservasPista2);
+        lvPista3.setItems(reservasPista3);
+        lvPista4.setItems(reservasPista4);
+        lvPista5.setItems(reservasPista5);
+        lvPista6.setItems(reservasPista6);
+        
+        
+    }
     
 
     
@@ -146,10 +199,10 @@ public class reservaFXMLController implements Initializable {
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();
-            Stage myStage = (Stage) reservar1.getScene().getWindow();
+            Stage myStage = (Stage) reservar.getScene().getWindow();
             myStage.close();
         }else{
-            var reservas = club.getForDayBookings(picker.getValue());
+            List<Booking> reservas = club.getForDayBookings(picker.getValue());
             boolean noApta = false;
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
             fromTime = LocalTime.parse(hora.getValue(),dtf);
@@ -161,7 +214,7 @@ public class reservaFXMLController implements Initializable {
             }
             if(!noApta){
                 boolean paid = user.checkHasCreditInfo();
-                court = club.getCourts().get(0);
+                court = club.getCourt(pista.getValue());
                 //getCurrentDate();
                 //getHour();
                 //DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.US);
@@ -169,6 +222,7 @@ public class reservaFXMLController implements Initializable {
 
                 Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                 System.out.println("Exito al hacer la reserva");
+                inicializarListView();
             }else{
                 //Sacar alert para decir reserva ya existente
             }
@@ -186,16 +240,7 @@ public class reservaFXMLController implements Initializable {
         return false;
     }
     
-    private void inicializarHoras(){
-        ObservableList<String> horas = FXCollections.observableArrayList();
-        
-        for(int i = 0; i <= 23;i++){
-            horas.add((i<10?"0":"")+i+":00");
-        }
-        
-        hora.setItems(horas);
-        hora.setValue((LocalTime.now().getHour() + 1)+":00");
-    }
+    
     
     public void init(String log, String pass){
         this.login = log;
@@ -216,19 +261,6 @@ public class reservaFXMLController implements Initializable {
             Stage myStage = (Stage) GoBack.getScene().getWindow();
             myStage.close();
 }
-
-
-
-    @FXML
-    private void sinTexto(KeyEvent event) {
-        try{
-            int numero = Integer.parseInt(event.getCharacter());
-            System.out.println(numero);
-        }catch(NumberFormatException nfe){
-            
-            System.out.println("Errorororrooror");
-        }
-    }
 
 
 
