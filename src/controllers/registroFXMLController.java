@@ -262,7 +262,12 @@ public class registroFXMLController implements Initializable {
         if (txt_telefono.getText().isEmpty()){
        lbltelefono.setText("Campo requerido"); 
        valido = true;
-       }else {
+       }
+        else if(txt_telefono.getText().matches("^[a-zA-Z]*$")){
+            lbltelefono.setText("Formato incorrecto"); 
+            valido = true;  
+        }
+        else {
            lbltelefono.setText("");
        }
         if (txt_nickname.getText().isEmpty()){

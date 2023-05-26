@@ -10,9 +10,9 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,25 +24,22 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseDragEvent;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import model.Member;
 import model.Club;
-import model.ClubDAO;
 import model.ClubDAOException; 
 
-/**
- *
- * @author bland
- */
+
 public class editarFXMLController implements Initializable {
 
     @FXML
@@ -76,6 +73,8 @@ public class editarFXMLController implements Initializable {
     private Member user;
     
     private String login;
+    
+    private String contraVieja;
    
     private List<Member> miembros = new ArrayList();
     @FXML
@@ -92,6 +91,8 @@ public class editarFXMLController implements Initializable {
     private Text existente;
     @FXML
     private Text lbltarjeta;
+    @FXML
+    private PasswordField txt_contrasenanueva;
     
     Image avatar1;
     Image avatar2;
@@ -105,6 +106,9 @@ public class editarFXMLController implements Initializable {
     Image woman4;
     Image woman5;
     Image woman6;
+    @FXML
+    private Text lblcontrasenanueva;
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -202,6 +206,8 @@ public class editarFXMLController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(registroFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+         
+         
     }    
 
     @FXML
@@ -215,7 +221,10 @@ public class editarFXMLController implements Initializable {
         
         Image avatar = imgAvatar.getImage();
         boolean noValido = false;
+        boolean cambiada = false;
         
+        existente.setText("");
+        lblcontrasena.setText("");
         
         if (txt_nombre.getText().isEmpty()){
        lblnombre.setText("Campo requerido"); 
@@ -234,21 +243,41 @@ public class editarFXMLController implements Initializable {
        noValido = true;
        }
        else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$")){
-       lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
-       noValido = true;
+            lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
+            noValido = true;
        }
-       else {
-           lblcontrasena.setText("");
+            if(!password.equals(contraVieja)){
+            lblcontrasena.setText("Contrseña incorrecta"); 
+            noValido = true;
        }
+            else {
+                lblcontrasena.setText("");
+            }
+       if(!txt_contrasenanueva.getText().matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$") && !(txt_contrasenanueva.getText().equals(""))){
+           lblcontrasenanueva.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres");
+       }
+       else if(!(txt_contrasenanueva.getText().equals(""))){
+           lblcontrasenanueva.setText("");
+           cambiada = true;
+       }
+       else{
+           lblcontrasenanueva.setText("");
+       }
+       
         if (txt_telefono.getText().isEmpty()){
-       lbltelefono.setText("Campo requerido"); 
-       noValido = true;
-       }else {
+            lbltelefono.setText("Campo requerido"); 
+            noValido = true;  
+       }
+        else if(txt_telefono.getText().matches("^[a-zA-Z]*$")){
+            lbltelefono.setText("Formato incorrecto"); 
+            noValido = true;  
+        }
+        else {
            lbltelefono.setText("");
        }
         if (txt_nickname.getText().isEmpty()){
-       lblnickname.setText("Campo requerido"); 
-       noValido = true;
+            lblnickname.setText("Campo requerido"); 
+            noValido = true;
        }else {
            lblnickname.setText("");
        }
@@ -277,13 +306,67 @@ public class editarFXMLController implements Initializable {
                 lblsvc.setText("Informacion incorrecta");
                 noValido = true;
             }
+            else if(club.existsLogin(login)){
+                if(!(nickName.equals(login))){
+                    noValido = true;
+                }
+            }
             else{
                 lblsvc.setText("");
+            }
+        }
+        if(!noValido){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("¿Guardar cambios?");
+            alert.setHeaderText("¿Desea guardar los cambios realizados?");
+            alert.setContentText("Una vez guardados \n " + "se cambiaran los datos");
+            Optional<ButtonType> result = alert.showAndWait();
+            
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                
+            }
+            else{
+                noValido = true;
             }
         }
         
         
         if(!noValido){
+            
+            
+            user.setCreditCard(tarjeta);
+            user.setImage(avatar);
+            user.setName(name);
+            user.setNickName(nickName);
+            user.setPassword(txt_contrasenanueva.getText());
+            user.setSurname(surname);
+            if(!(txt_svc.getText().equals(""))){
+                user.setSvc(Integer.parseInt(txt_svc.getText()));
+            }
+            user.setTelephone(telephone);
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/perfil/perfilFXML.fxml"));   
+            Parent root = loader.load();
+            perfilFXMLController controller = loader.getController();
+            controller.init(login,txt_contrasenanueva.getText());
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) registrar.getScene().getWindow();
+            myStage.close();
+        }
+        else{
+            if(club.existsLogin(txt_nickname.getText())&& !(txt_nickname.getText().equals(login))){
+                Alert alert = new Alert((Alert.AlertType.INFORMATION));
+                alert.setTitle("Error al editar");
+                alert.setHeaderText("No es posible realizar los cambios");
+                alert.setContentText("Nikname ya registrado \n " + "Por favor introduzca un Nickname distinto");
+                alert.showAndWait();
+                
+            }
+        }    
+            /*
             miembros = club.getMembers();
             club.setInitialData();
             
@@ -320,7 +403,9 @@ public class editarFXMLController implements Initializable {
             if(club.existsLogin(txt_nickname.getText()) && !txt_nickname.getText().equals(login)){
             existente.setText("NickName ya registrado en el sistema");
             }
-        }
+            */
+        
+        
     }
 
     @FXML
@@ -428,7 +513,9 @@ public class editarFXMLController implements Initializable {
         else{
             txt_svc.setText(Integer.toString(user.getSvc()));
         }
-    }
+        contraVieja = pass;
+
+        }
    
     }
     

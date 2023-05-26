@@ -59,7 +59,9 @@ public class reservasFXMLController implements Initializable {
     private ImageView imgpista5;
     @FXML
     private ImageView imgpista6;
+    
     private String login;
+    
     private String contra;
     
     private Club club;
@@ -223,9 +225,11 @@ public class reservasFXMLController implements Initializable {
                     horav = Character.getNumericValue(hora.getText().charAt(0));
                 if(horav > 23) break;
                 if(aux2.equals(LocalTime.of(horav,0))){
-                    
+                    String pista = "";
+                    List<Court> pistas = club.getCourts();
+                    pista = pistas.get(0).getName().toString();
                     switch(aux3.getName()){
-                        case "Pista 1": 
+                        case "": 
                             rp1.setText("Reservado");
                             rp11.setText(aux);
                             break;

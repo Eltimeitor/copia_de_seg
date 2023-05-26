@@ -25,6 +25,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
@@ -227,6 +229,11 @@ public class reservaFXMLController implements Initializable {
                 inicializarListView();
             }else{
                 //Sacar alert para decir reserva ya existente
+                Alert alert = new Alert((AlertType.INFORMATION));
+                alert.setTitle("Error en la reserva");
+                alert.setHeaderText("No es posible realizar la reserva");
+                alert.setContentText(pista.getValue() + " ya reservada \n " + "Por favor seleccione otra pista u hora");
+                alert.showAndWait();
                 System.out.println("Pista: "+pista.getValue()+ " ya esta reservada");
             }
         }

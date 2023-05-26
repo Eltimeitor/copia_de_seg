@@ -51,14 +51,14 @@
                         <TextField fx:id="txt_telefono" prefHeight="26.0" prefWidth="106.0" />
                      </children>
                      <HBox.margin>
-                        <Insets left="60.0" />
+                        <Insets left="60.0" top="20.0" />
                      </HBox.margin>
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                         <VBox prefHeight="100.0" prefWidth="202.0">
                            <HBox.margin>
-                              <Insets />
+                              <Insets top="20.0" />
                            </HBox.margin>
                            <children>
                               <Label text="Opcional">
@@ -93,7 +93,7 @@
                         <Label text="NickName" />
                         <TextField fx:id="txt_nickname" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
                         <Text fx:id="lblnickname" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <Label text="Contraseña" />
+                        <Label text="Contraseña actual" />
                         <PasswordField fx:id="txt_contrasena" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
                         <Text fx:id="lblcontrasena" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
@@ -126,16 +126,35 @@
       </VBox>
    </center>
    <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox alignment="CENTER_RIGHT" prefHeight="114.0" prefWidth="627.0" BorderPane.alignment="CENTER">
          <children>
+            <VBox alignment="CENTER_LEFT" prefHeight="191.0" prefWidth="200.0">
+               <children>
+                  <Label text="Nueva Contraseña (Opcional)">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </Label>
+                  <PasswordField fx:id="txt_contrasenanueva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </PasswordField>
+                  <Text fx:id="lblcontrasenanueva" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </Text>
+               </children>
+            </VBox>
             <Button fx:id="registrar" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="65.0" text="Guardar">
                <HBox.margin>
-                  <Insets bottom="30.0" left="90.0" />
+                  <Insets left="43.0" top="20.0" />
                </HBox.margin></Button>
             <Pane prefHeight="100.0" prefWidth="57.0" />
             <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" text="Cancelar">
                <HBox.margin>
-                  <Insets bottom="30.0" right="80.0" />
+                  <Insets right="80.0" top="20.0" />
                </HBox.margin></Button>
          </children>
       </HBox>
