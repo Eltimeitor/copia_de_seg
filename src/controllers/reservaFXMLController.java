@@ -101,6 +101,8 @@ public class reservaFXMLController implements Initializable {
     private ChoiceBox<String> pista;
     @FXML
     private CheckBox consecutivas;
+    
+    private boolean dosHoras;
 
     /**
      * Initializes the controller class.
@@ -154,6 +156,7 @@ public class reservaFXMLController implements Initializable {
     private void inicializarListView(){
         
         List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
+        
         ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista3 = FXCollections.observableArrayList();
@@ -241,6 +244,38 @@ public class reservaFXMLController implements Initializable {
                 
                 
                 Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                if(dosHoras){
+                    List<Booking> reservaPista = club.getUserBookings(login);
+                        boolean entra = true;
+                        String a = hora.getValue().substring(0,2);
+                        int c = Integer.parseInt(a);
+                        for(Booking b : reservaPista){
+                            
+                            if((b.getBookingDate().getHour()) == (c + 1) && club.getCourt(pista.getValue()).equals(b.getCourt()) && b.getBookingDate().equals(picker.getValue())){
+                                entra = false; 
+                                break;
+                            }
+                            if((b.getBookingDate().getHour()) == (c + 1) && !club.getCourt(pista.getValue()).equals(b.getCourt())&& b.getBookingDate().equals(picker.getValue())){
+                                entra = false;
+                                break;
+                            }
+                        }
+                        if(entra){
+                            
+                            a = c + ":00";
+                            dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+                            fromTime = LocalTime.parse(a,dtf);
+                            Booking registerBookingDuplicated = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                        }
+                        else{
+                            Alert alert = new Alert((AlertType.INFORMATION));
+                            alert.setTitle("Error en la reserva");
+                            alert.setHeaderText("No es posible realizar la reserva");
+                            alert.setContentText("No es posinble reservar esta pista 2 horas consecutivas");
+                            alert.showAndWait();
+                
+                        }
+                }
                 System.out.println("Exito al hacer la reserva");
                 inicializarListView();
             }else{
@@ -250,7 +285,7 @@ public class reservaFXMLController implements Initializable {
                 alert.setHeaderText("No es posible realizar la reserva");
                 alert.setContentText(pista.getValue() + " ya reservada \n " + "Por favor seleccione otra pista u hora");
                 alert.showAndWait();
-                System.out.println("Pista: "+pista.getValue()+ " ya esta reservada");
+                
             }
         }
     }
@@ -262,7 +297,7 @@ public class reservaFXMLController implements Initializable {
     
     private boolean horaCorrecta(){
         //Comprobar que si la fecha es hoy, la hora es mayor a la actual
-        //Comprobar casos de uso de limites de horas
+
         return false;
     }
     
@@ -298,10 +333,10 @@ public class reservaFXMLController implements Initializable {
             Optional<ButtonType> result = alert.showAndWait();
             
             if(result.isPresent() && result.get() == ButtonType.OK){
-                System.out.println("si");
+                dosHoras = true;
             }
             else{
-                System.out.println("no");
+                dosHoras = false;
             }
         }
         
