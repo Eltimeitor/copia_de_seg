@@ -106,27 +106,6 @@ public class editarFXMLController implements Initializable {
     Image woman5;
     Image woman6;
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
@@ -235,48 +214,48 @@ public class editarFXMLController implements Initializable {
         String tarjeta = txt_tarjeta.getText();
         
         Image avatar = imgAvatar.getImage();
-        boolean valido = false;
+        boolean noValido = false;
         
         
         if (txt_nombre.getText().isEmpty()){
        lblnombre.setText("Campo requerido"); 
-       valido = true;
+       noValido = true;
        }else {
            lblnombre.setText("");
        }
         if (txt_apellidos.getText().isEmpty()){
        lblapellido.setText("Campo requerido");
-       valido = true;
+       noValido = true;
        }else {
            lblapellido.setText("");
        }
        if (txt_contrasena.getText().isEmpty()){
        lblcontrasena.setText("Campo requerido");
-       valido = true;
+       noValido = true;
        }
        else if(!password.matches("^(?=.*[0-9])(?=.*[a-z])(?=\\S+$).{6,}$")){
        lblcontrasena.setText("La contraseña debe incluir numeros\ny al menos 6 caracteres"); 
-       valido = true;
+       noValido = true;
        }
        else {
            lblcontrasena.setText("");
        }
         if (txt_telefono.getText().isEmpty()){
        lbltelefono.setText("Campo requerido"); 
-       valido = true;
+       noValido = true;
        }else {
            lbltelefono.setText("");
        }
         if (txt_nickname.getText().isEmpty()){
        lblnickname.setText("Campo requerido"); 
-       valido = true;
+       noValido = true;
        }else {
            lblnickname.setText("");
        }
         
         if(!tarjeta.matches("^(?=.*[0-9])(?=\\S+$).{16,}$") && !tarjeta.isEmpty()){
             lbltarjeta.setText("Informacion incorrecta");
-            valido = true;
+            noValido = true;
         }
         else{
             
@@ -285,18 +264,18 @@ public class editarFXMLController implements Initializable {
             
             if(txt_svc.getText().isEmpty() && !tarjeta.isEmpty()){
                 lblsvc.setText("Campo requerido");
-                valido = true;
+                noValido = true;
             }
             else if(tarjeta.isEmpty()){
                 txt_svc.setText("");
             }
             else if(!txt_svc.getText().matches("^(?=.*[0-9])(?=\\S+$).{3,}$")){
                 lblsvc.setText("Informacion incorrecta");
-                valido = true;
+                noValido = true;
             }
             else if(txt_svc.getText().matches("(?=.*[a-z])")){
                 lblsvc.setText("Informacion incorrecta");
-                valido = true;
+                noValido = true;
             }
             else{
                 lblsvc.setText("");
@@ -304,29 +283,20 @@ public class editarFXMLController implements Initializable {
         }
         
         
-        if(!valido){
+        if(!noValido){
             miembros = club.getMembers();
             club.setInitialData();
             
-            Member aux;
-            Member aux2;
-            for(int i = 0; i < miembros.size() - 6; i++){
+            for(Member m: miembros){
                 
-                aux = miembros.get(i);
-                aux2 = miembros.get(i);
-                if(!login.equals(miembros.get(i+5).getNickName())){
-                    club.registerMember(aux.getName(), aux.getSurname(), aux.getTelephone(), aux.getNickName(), aux.getPassword(), aux.getCreditCard(), aux.getSvc(), aux.getImage());
+                if(!login.equals(m.getNickName())){
+                    club.registerMember(m.getName(), m.getSurname(), m.getTelephone(), m.getNickName(), m.getPassword(), m.getCreditCard(), m.getSvc(), m.getImage());
                 }
-                
-                if(!club.existsLogin(txt_nickname.getText())){ 
-                    //club.registerMember(aux2.getName(), aux2.getSurname(), aux2.getTelephone(), aux2.getNickName(), aux2.getPassword(), aux2.getCreditCard(), aux2.getSvc(), aux2.getImage());
+
             }
-            }
-            
-            
         }
         
-        if(!club.existsLogin(txt_nickname.getText()) && !valido){
+        if(!club.existsLogin(txt_nickname.getText()) && !noValido){
             login = nickName;
             int svc = 0;
             if(!txt_svc.getText().equals("")){

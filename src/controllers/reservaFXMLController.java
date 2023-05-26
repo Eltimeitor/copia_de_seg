@@ -88,11 +88,12 @@ public class reservaFXMLController implements Initializable {
     @FXML
     private ListView<String> lvPista4;
     @FXML
-    private ChoiceBox<String> pista;
-    @FXML
     private ListView<String> lvPista5;
     @FXML
     private ListView<String> lvPista6;
+    @FXML
+    private ChoiceBox<String> pista;
+
     /**
      * Initializes the controller class.
      */
@@ -133,12 +134,12 @@ public class reservaFXMLController implements Initializable {
     private void inicializarPistas(){
         ObservableList<String> pistas = FXCollections.observableArrayList();
         
-        for(int i = 1; i <=6;i++){
-            pistas.add("Pista "+i);
+        for(Court c : club.getCourts()){
+            pistas.add(c.getName());
         }
         
         pista.setItems(pistas);
-        pista.setValue("Pista 1");
+        pista.setValue(pistas.get(0));
     }
     
     @FXML
@@ -155,7 +156,7 @@ public class reservaFXMLController implements Initializable {
         for(int i = 0; i < reservaPista.size();i++){
             switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
                 case "PISTA1":
-                    reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00");
+                    reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00 \n"+reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA2":
                     reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00");
@@ -207,7 +208,8 @@ public class reservaFXMLController implements Initializable {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
             fromTime = LocalTime.parse(hora.getValue(),dtf);
             for(int i = 0; i < reservas.size(); i++){
-                noApta = reservas.get(i).getFromTime().getHour() == (fromTime.getHour());
+                Booking reserva = reservas.get(i); 
+                noApta = reserva.getFromTime().getHour() == (fromTime.getHour()) && reserva.isInCourt(pista.getValue());
                 if(noApta){
                     break;
                 }
@@ -225,6 +227,7 @@ public class reservaFXMLController implements Initializable {
                 inicializarListView();
             }else{
                 //Sacar alert para decir reserva ya existente
+                System.out.println("Pista: "+pista.getValue()+ " ya esta reservada");
             }
         }
     }
