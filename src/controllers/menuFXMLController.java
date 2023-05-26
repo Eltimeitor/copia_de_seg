@@ -128,7 +128,7 @@ public class menuFXMLController implements Initializable {
 
     @FXML
     private void verReservas(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/reservas/reservasFXML.fxml"));   
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/verReservas/verReservasFXML.fxml"));   
             Parent root = loader.load();
             reservasFXMLController controller = loader.getController();
             controller.init(login,contra);

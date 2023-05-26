@@ -124,6 +124,7 @@ public class editarFXMLController implements Initializable {
         miembros = club.getMembers();
         
         
+        
          ObservableList<ImageView> avatars = FXCollections.observableArrayList();
          Image Predeterminado; 
          
@@ -499,6 +500,7 @@ public class editarFXMLController implements Initializable {
         myStage.close();
     }
     public void init(String log, String pass){
+
         this.login = log;
         txt_nickname.setText(login);
         user = club.getMemberByCredentials(login, pass);
