@@ -165,8 +165,20 @@ public class reservasFXMLController implements Initializable {
     
     @FXML
     private void goback(ActionEvent event) throws IOException {
-    FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml")); 
-    Parent root = loader.load();
+        if(login.equals("Iniciar Sesion")){
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/inicio/inicioFXML.fxml")); 
+            Parent root = loader.load();
+            InicioFXMLController controller = loader.getController();
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) GoBack.getScene().getWindow();
+            myStage.close();
+    }
+        else{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml")); 
+            Parent root = loader.load();
             menuFXMLController controller = loader.getController();
             controller.init(login, contra);
             Scene scene = new Scene(root);
@@ -175,6 +187,7 @@ public class reservasFXMLController implements Initializable {
             stage.show();
             Stage myStage = (Stage) GoBack.getScene().getWindow();
             myStage.close();
+        }
 }
 
     @FXML

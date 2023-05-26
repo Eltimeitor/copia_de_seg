@@ -30,7 +30,7 @@
                </children></HBox>
             <HBox alignment="BOTTOM_CENTER" prefHeight="54.0" prefWidth="600.0" stylesheets="@iniciocss.css">
                <children>
-                  <Button fx:id="sinSesion" mnemonicParsing="false" onAction="#sinSesion" stylesheets="@../javafxmlapplication/autentificarsecss.css" text="Continuar sin sesión" />
+                  <Button fx:id="sinSesion" mnemonicParsing="false" onAction="#sinSesion" stylesheets="@../javafxmlapplication/autentificarsecss.css" text="Ver Reservas" />
                </children>
             </HBox>
          </children>

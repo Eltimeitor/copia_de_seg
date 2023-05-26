@@ -96,9 +96,9 @@ public class InicioFXMLController implements Initializable {
 
     @FXML
     private void sinSesion(ActionEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/menu/menuFXML.fxml"));   
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/verReservas/verReservasFXML.fxml"));   
             Parent root = loader.load();
-            menuFXMLController controller = loader.getController();
+            reservasFXMLController controller = loader.getController();
             controller.init(noUser.getNickName(),noUser.getPassword());
             Scene scene = new Scene(root);
             Stage stage = new Stage();
