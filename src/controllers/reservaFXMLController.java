@@ -12,6 +12,7 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -154,26 +155,34 @@ public class reservaFXMLController implements Initializable {
         ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
+        for(int i = 9 ; i <= 21; i++){
+            reservasPista1.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista2.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista3.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista4.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista5.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista6.add(i+":00h - "+(i+1)+":00h\nPista libre");
+        }
         
         for(int i = 0; i < reservaPista.size();i++){
             switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
                 case "PISTA1":
-                    reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista1.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA2":
-                    reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista2.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA3":
-                    reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista3.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA4":
-                    reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista4.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA5":
-                    reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista5.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA6":
-                    reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    reservasPista6.set(reservaPista.get(i).getFromTime().getHour()-9,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 default:
                     System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
