@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +30,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
@@ -96,6 +99,8 @@ public class reservaFXMLController implements Initializable {
     private ListView<String> lvPista6;
     @FXML
     private ChoiceBox<String> pista;
+    @FXML
+    private CheckBox consecutivas;
 
     /**
      * Initializes the controller class.
@@ -232,7 +237,9 @@ public class reservaFXMLController implements Initializable {
                 //getHour();
                 //DateTimeFormatter dt = DateTimeFormatter.ofPattern("dd/MM/yyyy",Locale.US);
                 ///madeForDay = LocalDate.parse(picker.getValue(),dt);
-
+                
+                
+                
                 Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                 System.out.println("Exito al hacer la reserva");
                 inicializarListView();
@@ -280,6 +287,25 @@ public class reservaFXMLController implements Initializable {
             Stage myStage = (Stage) GoBack.getScene().getWindow();
             myStage.close();
 }
+
+    @FXML
+    private void horasCosecutivas(ActionEvent event) {
+        if(consecutivas.isSelected()){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Reservar 2 Horas");
+            alert.setHeaderText("¿Desean reservar 2 Horas consecutivas?");
+            alert.setContentText("Si desea reservar dos horas consecutivas\npulse confirmar");
+            Optional<ButtonType> result = alert.showAndWait();
+            
+            if(result.isPresent() && result.get() == ButtonType.OK){
+                System.out.println("si");
+            }
+            else{
+                System.out.println("no");
+            }
+        }
+        
+    }
 
 
 
