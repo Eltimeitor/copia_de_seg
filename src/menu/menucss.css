@@ -3,40 +3,31 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : 21 may 2023, 21:54:58
+    Created on : 27 may 2023, 19:45:52
     Author     : bland
 */
 
 .button{
-    
     -fx-background-color:#90ee90; 
-    -fx-border-width: 1px;
-    -fx-border-radius: 15px;
     -fx-border-color:black;
     -fx-text-fill:black;  
-    -fx-background-radius: 15px;
+    -fx-font-weight: bold;
 }
 
-
-.label{
-    -fx-text-fill:#228b22; 
-    -fx-font-weight: bold; 
-    
-    
-}
-
-.text-field{
-  -fx-border-color:black;
-  -fx-border-radius: 6px;
-  
-}
-
-.combo-box{
+#boton{
     -fx-background-color:#8fbc8f;
     -fx-border-width: 1px;
     -fx-border-radius: 2px;
-    -fx-border-color:black;
+    -fx-border-color:darkgrey;
     -fx-text-fill:black;  
     -fx-background-radius: 2px;
+    -fx-font-weight: normal;
+    
 }
 
+#sesion{
+    -fx-font-weight: normal;
+    -fx-border-width: 1px;
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
