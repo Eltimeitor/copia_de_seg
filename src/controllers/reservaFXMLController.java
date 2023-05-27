@@ -242,27 +242,31 @@ public class reservaFXMLController implements Initializable {
                 ///madeForDay = LocalDate.parse(picker.getValue(),dt);
                 
                 
-                
-                Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                 if(dosHoras){
+                    
+                    
                     List<Booking> reservaPista = club.getUserBookings(login);
-                        boolean entra = true;
+                        boolean entra = false;
                         String a = hora.getValue().substring(0,2);
-                        int c = Integer.parseInt(a);
+                        int c = Integer.parseInt(a) + 1;
+                        a = c + ":00";
+                        System.out.println(c);
                         for(Booking b : reservaPista){
-                            
-                            if((b.getBookingDate().getHour()) == (c + 1) && club.getCourt(pista.getValue()).equals(b.getCourt()) && b.getBookingDate().equals(picker.getValue())){
-                                entra = false; 
-                                break;
+                            if(b.getBookingDate().getHour() == c - 1){
+                                entra = true;
+                                System.out.println("1");
                             }
-                            if((b.getBookingDate().getHour()) == (c + 1) && !club.getCourt(pista.getValue()).equals(b.getCourt())&& b.getBookingDate().equals(picker.getValue())){
-                                entra = false;
-                                break;
+                            if(b.getBookingDate().getHour() == c - 1){
+                                entra = true;
+                                System.out.println("1");
                             }
                         }
-                        if(entra){
-                            
-                            a = c + ":00";
+                        if(c == 22){
+                                entra = true;
+                                System.out.println("2");
+                            }
+                        if(!entra){
+                            Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                             dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
                             fromTime = LocalTime.parse(a,dtf);
                             Booking registerBookingDuplicated = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
@@ -270,13 +274,16 @@ public class reservaFXMLController implements Initializable {
                         else{
                             Alert alert = new Alert((AlertType.INFORMATION));
                             alert.setTitle("Error en la reserva");
-                            alert.setHeaderText("No es posible realizar la reserva");
-                            alert.setContentText("No es posinble reservar esta pista 2 horas consecutivas");
+                            alert.setHeaderText("No es posible rereservar 2 horas seguidas");
+                            alert.setContentText("Horario no disponible para dicha reserva");
                             alert.showAndWait();
                 
                         }
+                       
                 }
-                System.out.println("Exito al hacer la reserva");
+                 else{
+                    Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                    }
                 inicializarListView();
             }else{
                 //Sacar alert para decir reserva ya existente
@@ -325,6 +332,7 @@ public class reservaFXMLController implements Initializable {
 
     @FXML
     private void horasCosecutivas(ActionEvent event) {
+        dosHoras = false;
         if(consecutivas.isSelected()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Reservar 2 Horas");
