@@ -26,7 +26,8 @@
                <children>
                   <Button fx:id="verperfil" alignment="BOTTOM_LEFT" mnemonicParsing="false" onMouseClicked="#abrirPerfil" text="Ver Perfil" translateY="100.0" />
                   <Button fx:id="reserva" mnemonicParsing="false" onAction="#reservar" text="Reservar pista" translateX="-65.0" />
-                  <Button fx:id="reservas" mnemonicParsing="false" onAction="#verReservas" text="Ver Reservas" />
+                  <Button fx:id="misReservas" mnemonicParsing="false" onAction="#verMisReservas" text="Mis reservas" />
+                  <Button fx:id="reservas" mnemonicParsing="false" onAction="#verReservas" text="Ver reservas" />
                </children></HBox>
          </children>
       </VBox>

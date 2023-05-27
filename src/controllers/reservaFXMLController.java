@@ -211,6 +211,7 @@ public class reservaFXMLController implements Initializable {
     
     @FXML
     private void reservar(ActionEvent event) throws ClubDAOException, IOException{
+        
         if(this.login.equals("Iniciar Sesion")){ 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/javafxmlapplication/autentificarseFXML.fxml"));   
             Parent root = loader.load();
@@ -254,17 +255,16 @@ public class reservaFXMLController implements Initializable {
                         for(Booking b : reservaPista){
                             if(b.getBookingDate().getHour() == c - 1){
                                 entra = true;
-                                System.out.println("1");
+                                break;
                             }
                             if(b.getBookingDate().getHour() == c - 1){
                                 entra = true;
-                                System.out.println("1");
+                                break;
                             }
                         }
                         if(c == 22){
-                                entra = true;
-                                System.out.println("2");
-                            }
+                           entra = true;
+                        }
                         if(!entra){
                             Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                             dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);

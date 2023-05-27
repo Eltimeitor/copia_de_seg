@@ -59,6 +59,8 @@ public class menuFXMLController implements Initializable {
     private Button verperfil;
     @FXML
     private Button reservas;
+    @FXML
+    private Button misReservas;
 
     /**
      * Initializes the controller class.
@@ -137,6 +139,20 @@ public class menuFXMLController implements Initializable {
             stage.setScene(scene);
             stage.show();
             Stage myStage = (Stage) reserva.getScene().getWindow();
+            myStage.close();
+    }
+
+    @FXML
+    private void verMisReservas(ActionEvent event) throws IOException {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/reservasUsuario/reservasUsuarioFXML.fxml"));   
+            Parent root = loader.load();
+            reservasUsuarioFXMLController controller = loader.getController();
+            controller.init(login,contra,controller);
+            Scene scene = new Scene(root);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+            Stage myStage = (Stage) misReservas.getScene().getWindow();
             myStage.close();
     }
 

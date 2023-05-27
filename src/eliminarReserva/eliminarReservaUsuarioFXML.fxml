@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.eliminarReservaUsuarioFXMLController">
+   <bottom>
+      <HBox alignment="BOTTOM_RIGHT" prefHeight="46.0" prefWidth="622.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Go Back" textAlignment="RIGHT">
+               <HBox.margin>
+                  <Insets bottom="20.0" right="30.0" />
+               </HBox.margin>
+            </Button>
+         </children>
+      </HBox>
+   </bottom>
+   <top>
+      <VBox prefHeight="99.0" prefWidth="278.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Reservas">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin></Text>
+                  <Pane prefHeight="38.0" prefWidth="600.0" />
+                  <HBox prefHeight="118.0" prefWidth="600.0">
+                     <children>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha reservada: ">
+                                 <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Hora reservada: " />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="51.0" prefWidth="146.0">
+                           <children>
+                              <DatePicker fx:id="picker" editable="false" onAction="#inicializarListView" />
+                              <ComboBox fx:id="hora" prefHeight="26.0" prefWidth="78.0" />
+                           </children>
+                        </VBox>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Pista reservada: " />
+                        <ComboBox fx:id="pista" prefHeight="26.0" prefWidth="78.0" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </top>
+   <right>
+      <Button fx:id="eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar" BorderPane.alignment="CENTER" />
+   </right>
+</BorderPane>
