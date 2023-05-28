@@ -246,30 +246,57 @@ public class reservaFXMLController implements Initializable {
                 if(dosHoras){
                     
                     
-                    List<Booking> reservaPista = club.getUserBookings(login);
-                        boolean entra = false;
+                    List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
+                        boolean entra = true;
                         String a = hora.getValue().substring(0,2);
+                        
                         int c = Integer.parseInt(a) + 1;
-                        a = c + ":00";
                         System.out.println(c);
+                        System.out.println(c);
+                        a = c + ":00";
+                        
                         for(Booking b : reservaPista){
-                            if(b.getBookingDate().getHour() == c - 1){
-                                entra = true;
-                                break;
+                            if((b.getBookingDate().getHour() == Integer.parseInt(hora.getValue().substring(0,2))) ){
+                                entra = false;
+                              
                             }
-                            if(b.getBookingDate().getHour() == c - 1){
-                                entra = true;
-                                break;
+                            if((b.getBookingDate().getHour() == Integer.parseInt(hora.getValue().substring(0,2)) + 1) ){
+                                entra = false;
+                                
                             }
+                            if((b.getBookingDate().getHour() == Integer.parseInt(hora.getValue().substring(0,2))) && !(b.getMember().equals(user))){
+                                entra = false;
+                                
+                            }
+                            if((b.getBookingDate().getHour() == Integer.parseInt(hora.getValue().substring(0,2) + 1)) && !(b.getMember().equals(user))){
+                                entra = false;
+                                
+                            }
+                            
+                        }
+                        if(reservaPista.isEmpty()){
+                            entra = true;
                         }
                         if(c == 22){
-                           entra = true;
+                           entra = false;
                         }
-                        if(!entra){
-                            Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                        
+                        if(entra){
+                            try{
                             dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
                             fromTime = LocalTime.parse(a,dtf);
                             Booking registerBookingDuplicated = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                            fromTime = LocalTime.parse(hora.getValue(),dtf);
+                            Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                            }
+                            catch(Exception e){
+                                Alert alert = new Alert((AlertType.INFORMATION));
+                                alert.setTitle("Error en la reserva");
+                                alert.setHeaderText("No es posible rereservar 2 horas seguidas");
+                                alert.setContentText("Horario no disponible para dicha reserva");
+                                alert.showAndWait();
+                            }
+                            
                         }
                         else{
                             Alert alert = new Alert((AlertType.INFORMATION));
@@ -282,8 +309,20 @@ public class reservaFXMLController implements Initializable {
                        
                 }
                  else{
-                    Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                    List<Booking> reservaPista = club.getForDayBookings(picker.getValue());
+                        boolean entra = true;
+                        
+                    if(entra){
+                        Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                     }
+                    else{
+                        Alert alert = new Alert((AlertType.INFORMATION));
+                        alert.setTitle("Error en la reserva");
+                        alert.setHeaderText("No es posible realizar la reserva");
+                        alert.setContentText("No es posible reservar mas de 2 horas consecutivas\n ni reservar 2 pistas distintas a la misma hora");
+                        alert.showAndWait();
+                    }
+                }
                 inicializarListView();
             }else{
                 //Sacar alert para decir reserva ya existente
@@ -336,8 +375,8 @@ public class reservaFXMLController implements Initializable {
         if(consecutivas.isSelected()){
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Reservar 2 Horas");
-            alert.setHeaderText("¿Desean reservar 2 Horas consecutivas?");
-            alert.setContentText("Si desea reservar dos horas consecutivas\npulse confirmar");
+            alert.setHeaderText("¿Desea reservar 2 Horas consecutivas?");
+            alert.setContentText("Si desea reservar dos horas consecutivas\npulse Aceptar");
             Optional<ButtonType> result = alert.showAndWait();
             
             if(result.isPresent() && result.get() == ButtonType.OK){

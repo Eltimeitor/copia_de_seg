@@ -50,6 +50,7 @@ public class InicioFXMLController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         try {
             club = Club.getInstance();
         } catch (ClubDAOException ex) {
@@ -62,7 +63,7 @@ public class InicioFXMLController implements Initializable {
         club.addSimpleData();
         
         try {
-        noUser = club.registerMember("noLog", "noLog", "", "Iniciar Sesion", "noLog", "", 0, null);
+            noUser = club.registerMember("noLog", "noLog", "", "Iniciar Sesion", "noLog", "", 0, null);
         } catch (ClubDAOException ex) {
             Logger.getLogger(InicioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
