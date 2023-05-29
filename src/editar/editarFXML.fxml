@@ -57,6 +57,7 @@
                         <Text fx:id="lblapellido" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Label text="Telefono" />
                         <TextField fx:id="txt_telefono" prefHeight="26.0" prefWidth="106.0" />
+                        <Text fx:id="lbltelefono" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                      <HBox.margin>
                         <Insets left="60.0" top="20.0" />
@@ -74,7 +75,7 @@
                                     <Font name="System Italic" size="12.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets top="20.0" />
+                                    <Insets top="40.0" />
                                  </VBox.margin></Label>
                               <Label text="Nº Tarjeta de Credito">
                                  <VBox.margin>
@@ -140,7 +141,7 @@
                <children>
                   <Label text="Nueva Contraseña (Opcional)">
                      <VBox.margin>
-                        <Insets top="10.0" />
+                        <Insets top="50.0" />
                      </VBox.margin>
                   </Label>
                   <PasswordField fx:id="txt_contrasenanueva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">

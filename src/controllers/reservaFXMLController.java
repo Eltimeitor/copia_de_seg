@@ -282,21 +282,30 @@ public class reservaFXMLController implements Initializable {
                         }
                         
                         if(entra){
-                            try{
-                            dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
-                            fromTime = LocalTime.parse(a,dtf);
-                            Booking registerBookingDuplicated = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
-                            fromTime = LocalTime.parse(hora.getValue(),dtf);
-                            Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                            if(fechaCorrecta() && horaCorrecta()){
+                                try{
+                                    dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+                                    fromTime = LocalTime.parse(a,dtf);
+                                    Booking registerBookingDuplicated = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                                    fromTime = LocalTime.parse(hora.getValue(),dtf);
+                                    Booking registerBooking = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
                             }
-                            catch(Exception e){
-                                Alert alert = new Alert((AlertType.INFORMATION));
-                                alert.setTitle("Error en la reserva");
-                                alert.setHeaderText("No es posible rereservar 2 horas seguidas");
-                                alert.setContentText("Horario no disponible para dicha reserva");
-                                alert.showAndWait();
+                                catch(Exception e){
+                                    Alert alert = new Alert((AlertType.INFORMATION));
+                                    alert.setTitle("Error en la reserva");
+                                    alert.setHeaderText("No es posible rereservar 2 horas seguidas");
+                                    alert.setContentText("Horario no disponible para dicha reserva");
+                                    alert.showAndWait();
                             }
                             
+                            }
+                            else{
+                            Alert alert = new Alert((AlertType.INFORMATION));
+                            alert.setTitle("Error en la reserva");
+                            alert.setHeaderText("No es posible realizar la reserva");
+                            alert.setContentText("No es posible reservar a una hora anterior a la actual\n ni reservar en una fecha anterior a la actual");
+                            alert.showAndWait();
+                        }
                         }
                         else{
                             Alert alert = new Alert((AlertType.INFORMATION));
@@ -313,7 +322,16 @@ public class reservaFXMLController implements Initializable {
                         boolean entra = true;
                         
                     if(entra){
-                        Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                        if(fechaCorrecta() && horaCorrecta()){
+                            Booking registerBookingUnica = club.registerBooking(LocalDateTime.now(), picker.getValue(), fromTime, paid, court, user);
+                        }
+                        else{
+                            Alert alert = new Alert((AlertType.INFORMATION));
+                            alert.setTitle("Error en la reserva");
+                            alert.setHeaderText("No es posible realizar la reserva");
+                            alert.setContentText("No es posible reservar a una hora anterior a la actual\n ni reservar en una fecha anterior a la actual");
+                            alert.showAndWait();
+                        }
                     }
                     else{
                         Alert alert = new Alert((AlertType.INFORMATION));
@@ -337,14 +355,13 @@ public class reservaFXMLController implements Initializable {
     }
     
     private boolean fechaCorrecta(){
-        //Comprobar que la fecha sea mayor a la actual
-       return false;
+        return picker.getValue().compareTo(LocalDate.now())>0;       
     }
     
     private boolean horaCorrecta(){
-        //Comprobar que si la fecha es hoy, la hora es mayor a la actual
-
-        return false;
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+        LocalTime lc = LocalTime.parse(hora.getValue(),dtf);
+        return lc.compareTo(LocalTime.now())>0;
     }
     
     
