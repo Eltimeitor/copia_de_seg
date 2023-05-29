@@ -355,12 +355,14 @@ public class reservaFXMLController implements Initializable {
     }
     
     private boolean fechaCorrecta(){
-        return picker.getValue().compareTo(LocalDate.now())>0;       
+        System.out.println(picker.getValue().compareTo(LocalDate.now())>0);
+        return picker.getValue().compareTo(LocalDate.now())>=0;       
     }
     
     private boolean horaCorrecta(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
         LocalTime lc = LocalTime.parse(hora.getValue(),dtf);
+        System.out.println();
         return lc.compareTo(LocalTime.now())>0;
     }
     
