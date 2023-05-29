@@ -74,11 +74,12 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
       
 
     }    
-    public void init(String log, String pass, reservasUsuarioFXMLController controller){
+    public void init(String log, String pass, reservasUsuarioFXMLController controller,LocalDate hora){
         this.login = log;
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
         userController = controller;
+        picker.setValue(hora);
         
     } 
     
@@ -128,7 +129,7 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
 
     @FXML
     private void inicializarListView() {
-        userController.inicializarListViewPicker(picker.getValue());
+        userController.inicializarListView(picker.getValue());
        
     }
 }

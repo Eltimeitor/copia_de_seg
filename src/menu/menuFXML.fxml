@@ -65,7 +65,7 @@
    <bottom>
       <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="sesion" mnemonicParsing="false" text="Cerrar sesión">
+            <Button id="sesion" fx:id="cerrarSesion" mnemonicParsing="false" onAction="#cerrarSesion" text="Cerrar sesión">
                <HBox.margin>
                   <Insets bottom="30.0" right="30.0" />
                </HBox.margin>
