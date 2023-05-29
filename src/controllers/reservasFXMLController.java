@@ -113,6 +113,15 @@ public class reservasFXMLController implements Initializable {
         ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
         
+        for(int i = 9 ; i <= 21; i++){
+            reservasPista1.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista2.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista3.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista4.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista5.add(i+":00h - "+(i+1)+":00h\nPista libre");
+            reservasPista6.add(i+":00h - "+(i+1)+":00h\nPista libre");
+        }
+        
         for(int i = 0; i < reservaPista.size();i++){
             switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
                 case "PISTA1":

@@ -8,7 +8,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -117,6 +119,11 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
 
     @FXML
     private void eliminar(ActionEvent event) {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+        LocalTime h = LocalTime.parse(hora.getValue(),dtf);
+        userController.eliminarList(picker.getValue(), pista.getValue(),h);
+        
+        
     }
 
     @FXML

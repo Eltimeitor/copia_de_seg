@@ -163,6 +163,7 @@ public class reservaFXMLController implements Initializable {
         ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
         ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
+        
         for(int i = 9 ; i <= 21; i++){
             reservasPista1.add(i+":00h - "+(i+1)+":00h\nPista libre");
             reservasPista2.add(i+":00h - "+(i+1)+":00h\nPista libre");
@@ -363,6 +364,7 @@ public class reservaFXMLController implements Initializable {
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
         LocalTime lc = LocalTime.parse(hora.getValue(),dtf);
         System.out.println();
+        if(picker.getValue().compareTo(LocalDate.now())>0) return true;
         return lc.compareTo(LocalTime.now())>0;
     }
     

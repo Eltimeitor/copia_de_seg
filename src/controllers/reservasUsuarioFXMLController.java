@@ -7,7 +7,11 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +23,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.text.Text;
@@ -64,6 +70,7 @@ public class reservasUsuarioFXMLController implements Initializable {
     private eliminarReservaUsuarioFXMLController controller;
     private reservasUsuarioFXMLController thiscontroller;
     private Stage stage;
+    private String hora;
     /**
      * Initializes the controller class.
      */
@@ -204,31 +211,32 @@ public class reservasUsuarioFXMLController implements Initializable {
         ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
         
         
+        
         for(int i = 0; i < reservaPista.size();i++){
             switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
                 case "PISTA1":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista1.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA2":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista2.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA3":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista3.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA4":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista4.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA5":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista5.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 case "PISTA6":
                     if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
+                        reservasPista6.set(i,reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
                     break;
                 default:
                     System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
@@ -244,7 +252,61 @@ public class reservasUsuarioFXMLController implements Initializable {
         
         
     }
+    public void eliminarList(LocalDate ld, String pista, LocalTime horas){
+        
+        this.hora = horas.toString();
+        List<Booking> reservaPista = club.getForDayBookings(ld);
+        Booking aux = null;
+            for(Booking b : reservaPista){
+                if(pista.equalsIgnoreCase(b.getCourt().getName())){
+                    aux = b;
+                }
+            }
+            
+        if(fechaCorrecta() && horaCorrecta() && aux!=null){
+            try {
+                club.removeBooking(aux);
+            } catch (ClubDAOException ex) {
+                Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                
+        }
+        else{
+            if(!fechaCorrecta()){
+                Alert alert = new Alert((Alert.AlertType.INFORMATION));
+                alert.setTitle("Error al eliminar reserva");
+                alert.setHeaderText("No es posible eliminar la reserva");
+                alert.setContentText("No es posible eliminar un reserva pasada");
+                alert.showAndWait();
+            }
+            else if(!horaCorrecta()){
+                Alert alert = new Alert((Alert.AlertType.INFORMATION));
+                alert.setTitle("Error al eliminar reserva");
+                alert.setHeaderText("No es posible eliminar la reserva");
+                alert.setContentText("No es posible eliminar una reserva con\n un plazo menor a 12h");
+                alert.showAndWait();
+            }
+            else{
+                Alert alert = new Alert((Alert.AlertType.INFORMATION));
+                alert.setTitle("Error al eliminar reserva");
+                alert.setHeaderText("Reserva inexistente");
+                alert.setContentText("No exite la reserva que desea eliminar");
+                alert.showAndWait();
+            }
+        }
+    }
     
+    private boolean fechaCorrecta(){
+        System.out.println(picker.getValue().compareTo(LocalDate.now())>=0);
+        return picker.getValue().compareTo(LocalDate.now())>=0;       
+    }
     
+    private boolean horaCorrecta(){
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm",Locale.US);
+        LocalTime lc = LocalTime.parse(hora,dtf);
+        System.out.println();
+        if(picker.getValue().compareTo(LocalDate.now())>0) return true;
+        return lc.getHour() > LocalTime.now().getHour() - 12;
+    }
     
 }
