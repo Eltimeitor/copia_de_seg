@@ -15,76 +15,52 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="850.0" style="-fx-background-color: #f0fff0;" stylesheets="@reservarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.reservaFXMLController">
-   <bottom>
-      <HBox alignment="BOTTOM_RIGHT" prefHeight="46.0" prefWidth="622.0" BorderPane.alignment="CENTER_RIGHT">
-         <children>
-            <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Volver" textAlignment="RIGHT">
-               <HBox.margin>
-                  <Insets bottom="20.0" right="30.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
-   <top>
-      <VBox alignment="TOP_CENTER" prefHeight="55.0" prefWidth="700.0" BorderPane.alignment="CENTER">
-         <children>
-            <HBox prefHeight="63.0" prefWidth="700.0">
-               <children>
-                  <Pane prefHeight="88.0" prefWidth="33.0" />
-                  <Label text="Reservar">
-                     <font>
-                        <Font size="28.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets top="10.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
-   </top>
    <center>
-      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox prefHeight="383.0" prefWidth="628.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox prefHeight="41.0" prefWidth="566.0">
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="43.0" prefWidth="850.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="55.0" text="Fecha:">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></Label>
+                  <DatePicker fx:id="picker" editable="false" onAction="#inicializarListView">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin></DatePicker>
+                  <Button id="aceptar" fx:id="reservar" mnemonicParsing="false" onAction="#reservar" prefHeight="28.0" prefWidth="83.0" stylesheets="@reservarcss.css" text="Reservar">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Pane prefHeight="43.0" prefWidth="144.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="41.0" prefWidth="845.0">
                <children>
                   <Label prefHeight="17.0" prefWidth="50.0" text="Hora: " />
                   <ChoiceBox id="choice" fx:id="hora" prefHeight="25.0" prefWidth="77.0" />
-                  <Pane prefHeight="60.0" prefWidth="27.0" />
+                  <Text fx:id="errorHora" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="74.0000433921814">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                  </Text>
                   <CheckBox fx:id="consecutivas" mnemonicParsing="false" onAction="#horasCosecutivas" prefHeight="17.0" prefWidth="127.0" text="Reservar 2 Horas">
                      <HBox.margin>
-                        <Insets right="30.0" />
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </CheckBox>
                   <Label prefHeight="17.0" prefWidth="47.0" text="Pista: " />
                   <ChoiceBox id="choice" fx:id="pista" prefHeight="25.0" prefWidth="82.0" />
                </children>
                <VBox.margin>
-                  <Insets left="40.0" />
+                  <Insets />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="43.0" prefWidth="566.0">
-               <children>
-                  <Label prefHeight="17.0" prefWidth="56.0" text="Fecha:" />
-                  <DatePicker fx:id="picker" editable="false" onAction="#inicializarListView" />
-                  <Text fx:id="errorHora" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Button fx:id="reservar" mnemonicParsing="false" onAction="#reservar" text="Reservar">
-                     <HBox.margin>
-                        <Insets left="20.0" />
-                     </HBox.margin>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets bottom="10.0" left="40.0" />
-               </VBox.margin>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="190.0" prefWidth="566.0">
+            <HBox alignment="CENTER" prefHeight="190.0" prefWidth="364.0">
                <children>
                   <VBox prefHeight="230.0" prefWidth="130.0">
                      <children>
@@ -139,7 +115,31 @@
                   </VBox>
                </children>
             </HBox>
+            <HBox alignment="CENTER" prefHeight="46.0" prefWidth="622.0">
+               <children>
+                  <Pane prefHeight="46.0" prefWidth="713.0" />
+                  <Button fx:id="GoBack" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#goback" prefHeight="28.0" prefWidth="64.0" text="Volver" textAlignment="RIGHT">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </HBox>
          </children>
       </VBox>
    </center>
+   <top>
+      <HBox alignment="CENTER" prefHeight="67.0" prefWidth="850.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Reservar">
+               <font>
+                  <Font size="28.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

@@ -7,38 +7,21 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="450.0" style="-fx-background-color: #f0fff0;" stylesheets="@../editar/editarcss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.eliminarReservaUsuarioFXMLController">
-   <bottom>
-      <HBox alignment="TOP_RIGHT" prefHeight="46.0" prefWidth="411.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Atrás" textAlignment="RIGHT">
-               <HBox.margin>
-                  <Insets bottom="15.0" right="10.0" />
-               </HBox.margin>
-            </Button>
-            <Button fx:id="eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
-               <HBox.margin>
-                  <Insets bottom="15.0" right="10.0" />
-               </HBox.margin>
-            </Button>
-         </children>
-      </HBox>
-   </bottom>
    <top>
       <VBox prefHeight="59.0" prefWidth="400.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Label text="Reserva" textAlignment="CENTER">
+                  <Label text="Elimiar reserva" textAlignment="CENTER">
                      <font>
                         <Font size="28.0" />
                      </font>
                      <HBox.margin>
-                        <Insets />
+                        <Insets top="10.0" />
                      </HBox.margin>
                   </Label>
                </children>
@@ -71,9 +54,22 @@
                               <ComboBox fx:id="hora" prefHeight="26.0" prefWidth="78.0" />
                            </children>
                         </HBox>
+                        <HBox alignment="CENTER_RIGHT" prefHeight="46.0" prefWidth="411.0">
+                           <children>
+                              <Button fx:id="GoBack" alignment="CENTER_RIGHT" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#goback" text="Atrás" textAlignment="RIGHT">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                              <Button fx:id="eliminar" mnemonicParsing="false" onAction="#eliminar" text="Eliminar">
+                                 <HBox.margin>
+                                    <Insets bottom="15.0" right="10.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
-                  <Pane prefHeight="85.0" prefWidth="15.0" />
                </children>
                <VBox.margin>
                   <Insets bottom="10.0" />
@@ -82,10 +78,4 @@
          </children>
       </VBox>
    </center>
-   <left>
-      <Pane prefHeight="95.0" prefWidth="13.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="95.0" prefWidth="18.0" BorderPane.alignment="CENTER" />
-   </right>
 </BorderPane>

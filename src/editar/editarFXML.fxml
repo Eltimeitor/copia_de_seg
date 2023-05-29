@@ -16,9 +16,8 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="476.0" prefWidth="627.0" style="-fx-background-color: #f0fff0;" stylesheets="@../javafxmlapplication/autentificarsecss.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.editarFXMLController">
    <top>
-      <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="TOP_CENTER">
+      <HBox alignment="TOP_CENTER" prefHeight="89.0" prefWidth="627.0" BorderPane.alignment="TOP_CENTER">
          <children>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
             <Label alignment="CENTER" prefHeight="68.0" prefWidth="242.0" text="Editar perfil">
                <font>
                   <Font name="Berlin Sans FB" size="46.0" />
@@ -27,25 +26,22 @@
                   <Insets top="20.0" />
                </HBox.margin>
             </Label>
-            <Pane prefHeight="200.0" prefWidth="200.0" />
          </children>
       </HBox>
    </top>
    <center>
-      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="TOP_CENTER">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="200.0">
+                  <VBox prefHeight="345.0" prefWidth="200.0">
                      <children>
-                        <Label text="NickName">
-                           <VBox.margin>
-                              <Insets top="20.0" />
-                           </VBox.margin></Label>
+                        <Label text="NickName" />
                         <TextField fx:id="txt_nickname" editable="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" style="-fx-background-color: LIGHTGREY;" />
+                        <Text fx:id="lblnickname" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Label text="Nombre">
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets />
                            </VBox.margin></Label>
                         <TextField fx:id="txt_nombre" prefHeight="26.0" prefWidth="106.0">
                            <VBox.margin>
@@ -58,114 +54,80 @@
                         <Label text="Telefono" />
                         <TextField fx:id="txt_telefono" prefHeight="26.0" prefWidth="106.0" />
                         <Text fx:id="lbltelefono" strokeType="OUTSIDE" strokeWidth="0.0" />
-                     </children>
-                     <HBox.margin>
-                        <Insets left="60.0" top="20.0" />
-                     </HBox.margin>
-                  </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <VBox prefHeight="100.0" prefWidth="202.0">
-                           <HBox.margin>
-                              <Insets top="20.0" />
-                           </HBox.margin>
-                           <children>
-                              <Label text="Opcional">
-                                 <font>
-                                    <Font name="System Italic" size="12.0" />
-                                 </font>
-                                 <VBox.margin>
-                                    <Insets top="40.0" />
-                                 </VBox.margin></Label>
-                              <Label text="Nº Tarjeta de Credito">
-                                 <VBox.margin>
-                                    <Insets top="10.0" />
-                                 </VBox.margin>
-                              </Label>
-                              <TextField fx:id="txt_tarjeta" prefHeight="26.0" prefWidth="106.0" />
-                              <Text fx:id="lbltarjeta" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <Text fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                              <Label text="SVC" />
-                              <TextField fx:id="txt_svc" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" />
-                              <Text fx:id="lblsvc" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                           </children>
-                        </VBox>
-                     </children>
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
-                  </HBox>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <VBox prefHeight="136.0" prefWidth="200.0">
-                     <children>
-                        <Text fx:id="lblnickname" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Label text="Contraseña actual" />
                         <PasswordField fx:id="txt_contrasena" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" />
                         <Text fx:id="lblcontrasena" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="Nueva Contraseña (Opcional)">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Label>
+                        <PasswordField fx:id="txt_contrasenanueva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </PasswordField>
+                        <Text fx:id="lblcontrasenanueva" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </Text>
                      </children>
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
                   </VBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <HBox.margin>
-                        <Insets left="60.0" />
-                     </HBox.margin>
+                  <Pane prefHeight="381.0" prefWidth="92.0" />
+                  <VBox prefHeight="362.0" prefWidth="209.0">
                      <children>
-                        <VBox prefHeight="200.0" prefWidth="200.0">
+                        <Label text="Opcional">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Label text="Nº Tarjeta de Credito">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="txt_tarjeta" prefHeight="26.0" prefWidth="106.0" />
+                        <Text fx:id="lbltarjeta" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Label text="SVC" />
+                        <TextField fx:id="txt_svc" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="60.0" />
+                        <Text fx:id="lblsvc" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="existente" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <HBox prefHeight="88.0" prefWidth="210.0">
                            <children>
-                              <HBox prefHeight="100.0" prefWidth="273.0">
-                                 <children>
-                                    <ComboBox fx:id="imagen" onAction="#elegirAvatar" prefHeight="25.0" prefWidth="87.0" promptText="Imagen" />
-                                    <Button id="inspeccionar" mnemonicParsing="false" onAction="#examinarImagen" text="..." />
-                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="   " />
-                                    <ImageView fx:id="imgAvatar" fitHeight="88.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true" />
-                                 </children>
-                              </HBox>
-                              <Text fx:id="existente" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" />
-                           </children></VBox>
+                              <ComboBox fx:id="imagen" onAction="#elegirAvatar" prefHeight="25.0" prefWidth="87.0" promptText="Imagen" />
+                              <Button id="inspeccionar" mnemonicParsing="false" onAction="#examinarImagen" text="..." />
+                              <ImageView fx:id="imgAvatar" fitHeight="88.0" fitWidth="83.0" pickOnBounds="true" preserveRatio="true">
+                                 <HBox.margin>
+                                    <Insets left="8.0" />
+                                 </HBox.margin>
+                              </ImageView>
+                           </children>
+                        </HBox>
+                        <Pane prefHeight="200.0" prefWidth="200.0" />
+                        <HBox alignment="TOP_RIGHT" prefHeight="51.0" prefWidth="627.0">
+                           <children>
+                              <Button fx:id="registrar" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="65.0" text="Guardar">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                              <Pane prefHeight="51.0" prefWidth="38.0" />
+                              <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" text="Cancelar">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
             </HBox>
          </children>
       </VBox>
    </center>
-   <bottom>
-      <HBox alignment="CENTER_RIGHT" prefHeight="114.0" prefWidth="627.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="CENTER_LEFT" prefHeight="191.0" prefWidth="200.0">
-               <children>
-                  <Label text="Nueva Contraseña (Opcional)">
-                     <VBox.margin>
-                        <Insets top="50.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="txt_contrasenanueva" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0">
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </PasswordField>
-                  <Text fx:id="lblcontrasenanueva" fill="RED" lineSpacing="1.0" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <VBox.margin>
-                        <Insets bottom="30.0" />
-                     </VBox.margin>
-                  </Text>
-               </children>
-            </VBox>
-            <Button fx:id="registrar" mnemonicParsing="false" onAction="#accept" prefHeight="25.0" prefWidth="65.0" text="Guardar">
-               <HBox.margin>
-                  <Insets left="43.0" top="20.0" />
-               </HBox.margin></Button>
-            <Pane prefHeight="100.0" prefWidth="57.0" />
-            <Button fx:id="cancelar" mnemonicParsing="false" onAction="#cancell" prefHeight="25.0" prefWidth="67.0" text="Cancelar">
-               <HBox.margin>
-                  <Insets right="80.0" top="20.0" />
-               </HBox.margin></Button>
-         </children>
-      </HBox>
-   </bottom>
 </BorderPane>
