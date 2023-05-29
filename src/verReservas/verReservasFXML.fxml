@@ -30,7 +30,10 @@
          <children>
             <HBox prefHeight="48.0" prefWidth="600.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="57.0" text="Fecha: " />
+                  <Label prefHeight="17.0" prefWidth="57.0" text="Fecha: ">
+                     <HBox.margin>
+                        <Insets left="20.0" />
+                     </HBox.margin></Label>
                   <DatePicker fx:id="picker" editable="false" onAction="#inicializarListView" prefHeight="25.0" prefWidth="137.0" />
                   <Text fx:id="errorHora" fill="RED" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="60.66668701171875">
                      <HBox.margin>
@@ -49,45 +52,48 @@
                   <Insets bottom="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox prefHeight="261.0" prefWidth="600.0">
+            <HBox alignment="CENTER" prefHeight="261.0" prefWidth="543.0">
                <children>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 1" />
                         <ListView fx:id="lvPista1" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 2" />
                         <ListView fx:id="lvPista2" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 3" />
                         <ListView fx:id="lvPista3" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="243.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 4" />
                         <ListView fx:id="lvPista4" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 5" />
                         <ListView fx:id="lvPista5" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0">
+                  <VBox prefHeight="240.0" prefWidth="130.0">
                      <children>
                         <Label text="Pista 6" />
                         <ListView fx:id="lvPista6" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
                </children>
+               <VBox.margin>
+                  <Insets left="15.0" right="15.0" />
+               </VBox.margin>
             </HBox>
          </children>
       </VBox>
@@ -111,10 +117,4 @@
          </children>
       </VBox>
    </top>
-   <left>
-      <Pane prefHeight="280.0" prefWidth="58.0" BorderPane.alignment="CENTER" />
-   </left>
-   <right>
-      <Pane prefHeight="280.0" prefWidth="32.0" BorderPane.alignment="CENTER" />
-   </right>
 </BorderPane>

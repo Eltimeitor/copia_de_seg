@@ -58,6 +58,7 @@ public class InicioFXMLController implements Initializable {
         } catch (IOException ex) {
             Logger.getLogger(AutentificarseFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         club.setInitialData();//para no añadir nada nuevo a la base de datos, sin esto todo se queda registrado
         
         club.addSimpleData();
