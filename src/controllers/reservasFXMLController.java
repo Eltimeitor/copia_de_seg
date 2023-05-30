@@ -215,22 +215,34 @@ public class reservasFXMLController implements Initializable {
         for(int i = 0; i < reservaPista.size();i++){
             switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
                 case "PISTA1":
-                    reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                            reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 case "PISTA2":
-                    reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                        reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 case "PISTA3":
-                    reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                        reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 case "PISTA4":
-                    reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                        reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 case "PISTA5":
-                    reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                        reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 case "PISTA6":
-                    reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    if(picker.getValue().equals(reservaPista.get(i).getMadeForDay())){
+                        reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00 - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00" + "\n" +reservaPista.get(i).getMember().getNickName());
+                    }
                     break;
                 default:
                     System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );

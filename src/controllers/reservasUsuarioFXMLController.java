@@ -4,6 +4,7 @@
  */
 package controllers;
 
+import Clases.ReservasTabla;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
@@ -17,6 +18,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -30,6 +32,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import model.Booking;
@@ -50,18 +55,7 @@ public class reservasUsuarioFXMLController implements Initializable {
     private Text errorHora;
     @FXML
     private Button GoBack;
-    @FXML
-    private ListView<String> lvPista1;
-    @FXML
-    private ListView<String> lvPista2;
-    @FXML
-    private ListView<String> lvPista3;
-    @FXML
-    private ListView<String> lvPista4;
-    @FXML
-    private ListView<String> lvPista5;
-    @FXML
-    private ListView<String> lvPista6;
+    
     
     private Club club;
     private String login;
@@ -73,6 +67,15 @@ public class reservasUsuarioFXMLController implements Initializable {
     private reservasUsuarioFXMLController thiscontroller;
     private Stage stage;
     private String hora;
+    @FXML
+    private TableView<ReservasTabla> ReservasUser;
+    @FXML
+    private TableColumn<ReservasTabla, String> PistaColumn;
+    @FXML
+    private TableColumn<ReservasTabla, String> DiaColumn;
+    @FXML
+    private TableColumn<ReservasTabla, String> HoraColumn;
+    
     /**
      * Initializes the controller class.
      */
@@ -86,7 +89,7 @@ public class reservasUsuarioFXMLController implements Initializable {
             Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
         }
         picker.setValue(LocalDate.now());
-        inicializarListView();
+        inicializarTableView(picker.getValue());
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/eliminarReserva/eliminarReservaUsuarioFXML.fxml")); 
         Parent root;
@@ -109,10 +112,36 @@ public class reservasUsuarioFXMLController implements Initializable {
         this.contra = pass;
         user = club.getMemberByCredentials(login, contra);
         thiscontroller = controller;
-       inicializarListView();
+       inicializarTableView();
     }
+    @FXML
+   private void inicializarTableView() {
+        inicializarTableView(picker.getValue());
+    }
+    public void inicializarTableView(LocalDate value) {
 
+        List<Booking> reservaPista = club.getForDayBookings(value);
 
+        ObservableList<ReservasTabla> reservasPista1 = FXCollections.observableArrayList();
+       
+        
+        for(int i = 0; i < reservaPista.size();i++){
+           
+                    if(reservaPista.get(i).getMember().getNickName().equals(login)){
+                        reservasPista1.add(new ReservasTabla(reservaPista.get(i)));
+        }
+                   
+        } 
+                      
+           
+       
+        ReservasUser.setItems(reservasPista1);
+        
+        PistaColumn.setCellValueFactory((pistaFila)->{return pistaFila.getValue().pista;});
+        DiaColumn.setCellValueFactory((diaFila)->{return diaFila.getValue().dia;});
+        HoraColumn.setCellValueFactory((horaFila)->{return horaFila.getValue().hora;});
+   
+    }
 
     @FXML
     private void goback(ActionEvent event) throws IOException {
@@ -149,64 +178,6 @@ public class reservasUsuarioFXMLController implements Initializable {
             
     }
     
-        @FXML
-    private void inicializarListView() {
-        inicializarListView(picker.getValue());
-    }
-    
-    public void inicializarListView(LocalDate value) {
-        
-        List<Booking> reservaPista = club.getForDayBookings(value);
-        
-        ObservableList<String> reservasPista1 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista2 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista3 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista4 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista5 = FXCollections.observableArrayList();
-        ObservableList<String> reservasPista6 = FXCollections.observableArrayList();
-        
-        
-        
-        for(int i = 0; i < reservaPista.size();i++){
-            switch (reservaPista.get(i).getCourt().getName().toUpperCase().replace(" ","")) {
-                case "PISTA1":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista1.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA2":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista2.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA3":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista3.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA4":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista4.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA5":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista5.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                case "PISTA6":
-                    if(reservaPista.get(i).getMember().getNickName().equals(login))
-                        reservasPista6.add(reservaPista.get(i).getFromTime().getHour()+":00h - "+ (reservaPista.get(i).getFromTime().getHour() + 1) +":00h" + "\n" +reservaPista.get(i).getMember().getNickName());
-                    break;
-                default:
-                    System.out.println("Pista no encontrada:" + reservaPista.get(i).getCourt().getName().toUpperCase().trim() );
-                       
-            }
-        }
-        lvPista1.setItems(reservasPista1);
-        lvPista2.setItems(reservasPista2);
-        lvPista3.setItems(reservasPista3);
-        lvPista4.setItems(reservasPista4);
-        lvPista5.setItems(reservasPista5);
-        lvPista6.setItems(reservasPista6);
-        
-        picker.setValue(value);
-    }
     
     public void eliminarList(LocalDate ld, String pista, LocalTime horas){
         
@@ -241,7 +212,7 @@ public class reservasUsuarioFXMLController implements Initializable {
             
             try {
                 club.removeBooking(aux);
-                inicializarListView(picker.getValue());
+                inicializarTableView(picker.getValue());
             } catch (ClubDAOException ex) {
                 Logger.getLogger(reservasUsuarioFXMLController.class.getName()).log(Level.SEVERE, null, ex);
             }

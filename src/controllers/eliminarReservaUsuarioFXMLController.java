@@ -129,7 +129,7 @@ public class eliminarReservaUsuarioFXMLController implements Initializable {
 
     @FXML
     private void inicializarListView() {
-        userController.inicializarListView(picker.getValue());
+        userController.inicializarTableView(picker.getValue());
        
     }
 }
