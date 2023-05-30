@@ -142,6 +142,7 @@ public class reservasUsuarioFXMLController implements Initializable {
                 
                 
                 controller.init(login, contra, thiscontroller,picker.getValue());
+                stage.setResizable(false);
                 stage.show();
             }
            
@@ -258,7 +259,10 @@ public class reservasUsuarioFXMLController implements Initializable {
     private boolean horaCorrecta(Booking b){
         LocalDateTime ldt = LocalDateTime.now().plusHours(24);
         if(b.getMadeForDay().compareTo(ldt.toLocalDate()) == 0){
-            return  ldt.toLocalTime().compareTo(b.getFromTime()) < 0;
+            return ldt.toLocalTime().compareTo(b.getFromTime()) < 0;
+        }
+        else if(b.getMadeForDay().compareTo(ldt.toLocalDate()) < 0){
+            return false;
         }
         return true;
     }

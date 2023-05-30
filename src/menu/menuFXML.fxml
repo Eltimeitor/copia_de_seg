@@ -41,15 +41,18 @@
             </Text>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="reservas" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#verReservas" prefHeight="47.0" prefWidth="103.0" text="Disponibilidad de las pistas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true" />
+                  <Button fx:id="reservas" alignment="CENTER" minHeight="-Infinity" mnemonicParsing="false" onAction="#verReservas" prefHeight="47.0" prefWidth="103.0" text="Disponibilidad de las pistas" textAlignment="CENTER" textOverrun="CLIP" wrapText="true">
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin></Button>
                   <Pane prefHeight="47.0" prefWidth="141.0" />
-                  <Button fx:id="reserva" mnemonicParsing="false" onAction="#reservar" prefHeight="0.0" prefWidth="103.0" text="Reservar pista" />
+                  <Button fx:id="reserva" mnemonicParsing="false" onAction="#reservar" prefHeight="0.0" prefWidth="103.0" text="Reservar pista">
+                     <HBox.margin>
+                        <Insets bottom="20.0" />
+                     </HBox.margin></Button>
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="44.0" prefWidth="600.0">
-               <children>
-                  <Button fx:id="misReservas" mnemonicParsing="false" onAction="#verMisReservas" text="Mis reservas" />
-               </children>
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -58,6 +61,13 @@
       </VBox>
    </center>
    <bottom>
-      <VBox prefHeight="159.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+      <VBox alignment="CENTER" prefHeight="125.0" prefWidth="594.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="misReservas" mnemonicParsing="false" onAction="#verMisReservas" text="Mis reservas">
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
    </bottom>
 </BorderPane>
